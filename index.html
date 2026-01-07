@@ -315,7 +315,9 @@ window.addEventListener('error', (e) => {
 window.addEventListener('DOMContentLoaded', () => {
 
   /* ========= Marking tolerance ========= */
-  const MARK_TOL = 2.00; // accept within ±2.00 (checked at 0.01 resolution via rounding)
+  const MARK_TOL = 2.00;                 // accept within ±2.00
+  const STEP_SCALE = 100;                // 0.01 resolution
+  const MARK_TOL_100 = Math.round(MARK_TOL * STEP_SCALE); // 200
 
   /* ========= Helpers ========= */
   const rndInt=(m,M)=>Math.floor(Math.random()*(M-m+1))+m;
@@ -324,7 +326,16 @@ window.addEventListener('DOMContentLoaded', () => {
   const rndf=(min,max,dp=2)=>+((Math.random()*(max-min)+min).toFixed(dp));
   const deg2rad=d=>d*Math.PI/180;
 
-  const round2=x=>Math.round((+x + Number.EPSILON)*100)/100;
+  // Robust rounding (symmetric, stable)
+  const roundInt = (v, dp) => {
+    const f = 10 ** dp;
+    const sign = v < 0 ? -1 : 1;
+    return sign * Math.round((Math.abs(v) + 1e-12) * f);
+  };
+  const round2 = x => roundInt(+x, 2) / 100;
+
+  // Convert to integer hundredths (exact 0.01-step marking)
+  const toHundredths = x => roundInt(+x, 2);
 
   // Display numbers: 2 dp unless whole number (no trailing .00 needed)
   function fmt(x){
@@ -335,7 +346,10 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   const parseNum = (input) => {
-    const raw = (typeof input === 'string' ? input : (input?.value ?? '')).toString().trim().replace(',','.');
+    const raw = (typeof input === 'string' ? input : (input?.value ?? ''))
+      .toString()
+      .trim()
+      .replace(/,/g,'.');
     const x = parseFloat(raw);
     return isFinite(x)?x:NaN;
   };
@@ -343,10 +357,12 @@ window.addEventListener('DOMContentLoaded', () => {
   const secsToMMSS=s=>{const m=Math.floor(s/60), ss=String(s%60).padStart(2,'0'); return `${m}:${ss}`;};
   const unit = (u) => ({ kN:'kN' }[u]||u);
 
+  // TRUE ±2.00 tolerance checked at 0.01 resolution (no floats)
   function withinTolerance(stu, expected){
-    const s = round2(stu);      // 0.01 resolution
-    const e = round2(expected); // 0.01 resolution
-    return Math.abs(s - e) <= MARK_TOL + 1e-9;
+    if(!isFinite(stu) || !isFinite(expected)) return false;
+    const s100 = toHundredths(stu);
+    const e100 = toHundredths(expected);
+    return Math.abs(s100 - e100) <= MARK_TOL_100;
   }
 
   /* ========= Diagram geometry constraints (keep members visible) ========= */
@@ -506,7 +522,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const P = opts.P;
     const forceLabel = opts.forceLabel || 'P';
 
-    const member1Kind = opts.member1Kind || 'cable'; // 'cable' or 'bar'
+    const member1Kind = opts.member1Kind || 'cable';
     const member2Kind = opts.member2Kind || 'cable';
 
     const xWallL = SUR.xWallL, xWallR = SUR.xWallR;
@@ -517,24 +533,20 @@ window.addEventListener('DOMContentLoaded', () => {
     const a2  = deg2rad(refDeg - th2Deg);
     const f   = deg2rad(refDeg + 180);
 
-    // Surfaces present
     const hasCeil  = (env==='ceiling' || env==='cornerTL' || env==='cornerTR');
     const hasFloor = (env==='floor'   || env==='cornerBL' || env==='cornerBR');
     const hasWL    = (env==='wallLeft'|| env==='cornerTL' || env==='cornerBL');
     const hasWR    = (env==='wallRight'||env==='cornerTR' || env==='cornerBR');
 
-    // Use provided anchors (generated to be valid), else fallback
     const A1 = opts.A1 ?? {x: jx + 230*Math.cos(a1), y: jy - 230*Math.sin(a1)};
     const A2 = opts.A2 ?? {x: jx + 230*Math.cos(a2), y: jy - 230*Math.sin(a2)};
 
-    // reference + force arrows
     const Lref = 170, Lf = 160;
     const rx = jx + Lref*Math.cos(ref);
     const ry = jy - Lref*Math.sin(ref);
     const fx = jx + Lf*Math.cos(f);
     const fy = jy - Lf*Math.sin(f);
 
-    // angle arcs
     const rArc = 62;
     const arc1 = arcPath(jx,jy,rArc,ref,a1);
     const arc2 = arcPath(jx,jy,rArc,ref,a2);
@@ -548,7 +560,6 @@ window.addEventListener('DOMContentLoaded', () => {
     const t2x = jx + (rArc+22)*Math.cos(mid2);
     const t2y = jy - (rArc+22)*Math.sin(mid2);
 
-    // surfaces drawing
     let surfaces = '';
     if(hasCeil){
       surfaces += `<line x1="${SUR.xMin}" y1="${yCeil}" x2="${SUR.xMax}" y2="${yCeil}" class="topBeam"/>`;
@@ -579,7 +590,6 @@ window.addEventListener('DOMContentLoaded', () => {
           <line x1="${jx}" y1="${jy}" x2="${ax}" y2="${ay}" class="memberLine"/>
         `;
       }
-      // cable (outlined so it always shows)
       return `
         <line x1="${jx}" y1="${jy}" x2="${ax}" y2="${ay}" class="cableHalo"/>
         <line x1="${jx}" y1="${jy}" x2="${ax}" y2="${ay}" class="cable"/>
@@ -592,40 +602,43 @@ window.addEventListener('DOMContentLoaded', () => {
 
       ${surfaces}
 
-      <!-- Reference line (dashed) -->
       <line x1="${jx}" y1="${jy}" x2="${rx}" y2="${ry}" class="refLine"/>
       <text x="${rx}" y="${ry-10}" text-anchor="middle" class="note">ref</text>
 
-      <!-- Members (two only) -->
       ${drawMember(A1.x, A1.y, member1Kind)}
       ${drawMember(A2.x, A2.y, member2Kind)}
 
       <circle cx="${A1.x}" cy="${A1.y}" r="9" class="anchor"/>
       <circle cx="${A2.x}" cy="${A2.y}" r="9" class="anchor"/>
 
-      <!-- Joint -->
       <circle cx="${jx}" cy="${jy}" r="12" class="joint"/>
       <circle cx="${jx}" cy="${jy}" r="18" class="ring" opacity="0.45"/>
 
-      <!-- Force (acts opposite to dashed reference line) -->
       <line x1="${jx}" y1="${jy}" x2="${fx}" y2="${fy}" class="forcePoint"/>
       <text x="${fx}" y="${fy-12}" text-anchor="middle" class="small">${forceLabel} = ${fmt(P)} kN</text>
 
-      <!-- Angle arcs from the dashed reference line -->
       <path d="${arc1}" class="arc"/>
       <path d="${arc2}" class="arc"/>
       <text x="${t1x}" y="${t1y}" text-anchor="middle" class="small">θ₁=${Math.round(th1Deg)}°</text>
       <text x="${t2x}" y="${t2y}" text-anchor="middle" class="small">θ₂=${Math.round(th2Deg)}°</text>
 
-      <!-- Member labels -->
       ${memberLabel(jx,jy,A1.x,A1.y,'Member 1')}
       ${memberLabel(jx,jy,A2.x,A2.y,'Member 2')}
     `);
   }
 
   /* ========= Solvers ========= */
+  function solve2x2(a11,a12,b1,a21,a22,b2){
+    const det = a11*a22 - a12*a21;
+    if(Math.abs(det) < 1e-12) return null;
+    const x = (b1*a22 - a12*b2) / det;
+    const y = (a11*b2 - b1*a21) / det;
+    if(!isFinite(x) || !isFinite(y)) return null;
+    return { x, y, det };
+  }
+
   function solveTwoMember(refDeg, th1Deg, th2Deg, P){
-    // Coordinate system: x right, y up (math). Force acts at angle ref+180.
+    // math coords: x right, y up. External force acts opposite to ref line.
     const a1 = deg2rad(refDeg + th1Deg);
     const a2 = deg2rad(refDeg - th2Deg);
     const f  = deg2rad(refDeg + 180);
@@ -636,68 +649,80 @@ window.addEventListener('DOMContentLoaded', () => {
     const Fx = P*Math.cos(f);
     const Fy = P*Math.sin(f);
 
-    const det = u1x*u2y - u1y*u2x;
-    if(Math.abs(det) < 1e-8) return null;
+    // u1*T1 + u2*T2 + F = 0  =>  [u1 u2][T] = -F
+    const sol = solve2x2(u1x, u2x, -Fx, u1y, u2y, -Fy);
+    if(!sol) return null;
 
-    const T1 = ((-Fx)*u2y - u2x*(-Fy)) / det;
-    const T2 = (u1x*(-Fy) - (-Fx)*u1y) / det;
-
-    return { T1, T2 };
+    return { T1: sol.x, T2: sol.y };
   }
 
   function genAnglesWithAnchors(refDeg, P, minAng, maxAng, jx, jy, surf1, surf2){
-    for(let i=0;i<450;i++){
-      const th1 = rndInt(minAng, maxAng);
-      const th2 = rndInt(minAng, maxAng);
+    // Passes: start strict, then slightly relax if needed (prevents ever returning fake 0 answers)
+    const passes = [
+      { min:minAng, max:maxAng, maxT:260, tries:1400 },
+      { min:Math.max(10, minAng-6), max:Math.min(70, maxAng+10), maxT:320, tries:2200 },
+      { min:10, max:70, maxT:420, tries:3200 }
+    ];
 
-      const sol = solveTwoMember(refDeg, th1, th2, P);
-      if(!sol) continue;
-      if(!(sol.T1 > 0 && sol.T2 > 0)) continue;
-      if(sol.T1 > 260 || sol.T2 > 260) continue;
+    for(const pass of passes){
+      for(let i=0;i<pass.tries;i++){
+        const th1 = rndInt(pass.min, pass.max);
+        const th2 = rndInt(pass.min, pass.max);
 
-      const a1 = deg2rad(refDeg + th1);
-      const a2 = deg2rad(refDeg - th2);
+        const sol = solveTwoMember(refDeg, th1, th2, P);
+        if(!sol) continue;
+        if(!(sol.T1 > 0 && sol.T2 > 0)) continue;
+        if(sol.T1 > pass.maxT || sol.T2 > pass.maxT) continue;
 
-      const A1 = anchorOn(surf1, jx, jy, a1);
-      const A2 = anchorOn(surf2, jx, jy, a2);
-      if(!A1 || !A2) continue;
+        const a1 = deg2rad(refDeg + th1);
+        const a2 = deg2rad(refDeg - th2);
 
-      const L1 = Math.hypot(A1.x - jx, A1.y - jy);
-      const L2 = Math.hypot(A2.x - jx, A2.y - jy);
-      if(L1 < 95 || L2 < 95) continue;
+        const A1 = anchorOn(surf1, jx, jy, a1);
+        const A2 = anchorOn(surf2, jx, jy, a2);
+        if(!A1 || !A2) continue;
 
-      const sep = Math.hypot(A1.x - A2.x, A1.y - A2.y);
-      if(sep < 28) continue;
+        const L1 = Math.hypot(A1.x - jx, A1.y - jy);
+        const L2 = Math.hypot(A2.x - jx, A2.y - jy);
+        if(L1 < 95 || L2 < 95) continue;
 
-      return { th1, th2, T1: sol.T1, T2: sol.T2, A1, A2 };
+        const sep = Math.hypot(A1.x - A2.x, A1.y - A2.y);
+        if(sep < 28) continue;
+
+        return { th1, th2, T1: sol.T1, T2: sol.T2, A1, A2 };
+      }
     }
 
-    // Safe fallback attempts (should very rarely be needed)
-    const defaults = [[30,35],[35,30],[40,40],[25,35],[35,25]];
-    for(const [t1,t2] of defaults){
-      const sol = solveTwoMember(refDeg, t1, t2, P);
-      if(!sol) continue;
-      if(!(sol.T1 > 0 && sol.T2 > 0)) continue;
+    // Deterministic sweep (final guarantee) — still respects geometry.
+    for(let th1=10; th1<=70; th1++){
+      for(let th2=10; th2<=70; th2++){
+        const sol = solveTwoMember(refDeg, th1, th2, P);
+        if(!sol) continue;
+        if(!(sol.T1 > 0 && sol.T2 > 0)) continue;
 
-      const A1 = anchorOn(surf1, jx, jy, deg2rad(refDeg + t1));
-      const A2 = anchorOn(surf2, jx, jy, deg2rad(refDeg - t2));
-      if(A1 && A2) return { th1:t1, th2:t2, T1: sol.T1, T2: sol.T2, A1, A2 };
+        const a1 = deg2rad(refDeg + th1);
+        const a2 = deg2rad(refDeg - th2);
+
+        const A1 = anchorOn(surf1, jx, jy, a1);
+        const A2 = anchorOn(surf2, jx, jy, a2);
+        if(!A1 || !A2) continue;
+
+        const L1 = Math.hypot(A1.x - jx, A1.y - jy);
+        const L2 = Math.hypot(A2.x - jx, A2.y - jy);
+        if(L1 < 70 || L2 < 70) continue;
+
+        return { th1, th2, T1: sol.T1, T2: sol.T2, A1, A2 };
+      }
     }
 
-    // Last resort (still visible)
-    return {
-      th1: 30, th2: 30,
-      T1: 0, T2: 0,
-      A1: {x: jx-180, y: jy-180},
-      A2: {x: jx+180, y: jy-180}
-    };
+    // If we *ever* get here, something is deeply off — throw a clear error instead of fake answers.
+    throw new Error('Could not generate a valid two-member joint (angles/anchors) for this configuration.');
   }
 
   /* ========= Question generators (TWO MEMBERS ONLY) ========= */
 
   function qCeiling_HangingWeight(){
-    const P = rndf(6, 55, 2);        // W
-    const refDeg = 90;               // reference points up (members above), force down
+    const P = rndf(6, 55, 2);
+    const refDeg = 90;
     const jx=450, jy=340;
 
     const g = genAnglesWithAnchors(refDeg, P, 20, 55, jx, jy, 'ceiling', 'ceiling');
@@ -737,8 +762,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function qWallLeft_PullRight(){
     const P = rndf(8, 75, 2);
-    const refDeg = 180;              // reference points left (members on left), force right
-    const jx=420, jy=270;            // closer to the wall so members always hit within bounds
+    const refDeg = 180;
+    const jx=420, jy=270;
 
     const g = genAnglesWithAnchors(refDeg, P, 20, 38, jx, jy, 'wallLeft', 'wallLeft');
 
@@ -754,7 +779,7 @@ window.addEventListener('DOMContentLoaded', () => {
       A1:g.A1, A2:g.A2,
       P,
       forceLabel:'P',
-      member1Kind:'cable',  // mix
+      member1Kind:'cable',
       member2Kind:'bar',
       title:'Wall‑mounted joint pulled to the right',
       subtitle:`Find the ${ask==='T1'?'tension in Member 1':'tension in Member 2'}`
@@ -777,8 +802,8 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function qWallRight_PullLeft(){
     const P = rndf(8, 75, 2);
-    const refDeg = 0;                // reference points right (members on right), force left
-    const jx=480, jy=270;            // closer to right wall
+    const refDeg = 0;
+    const jx=480, jy=270;
 
     const g = genAnglesWithAnchors(refDeg, P, 20, 38, jx, jy, 'wallRight', 'wallRight');
 
@@ -794,7 +819,7 @@ window.addEventListener('DOMContentLoaded', () => {
       A1:g.A1, A2:g.A2,
       P,
       forceLabel:'P',
-      member1Kind:'bar',   // two bars (different from cable questions)
+      member1Kind:'bar',
       member2Kind:'bar',
       title:'Wall‑mounted joint pulled to the left',
       subtitle:`Find the ${ask==='T1'?'tension in Member 1':'tension in Member 2'}`
@@ -817,7 +842,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function qFloor_PullUp(){
     const P = rndf(8, 80, 2);
-    const refDeg = 270;              // reference points down (members below), force up
+    const refDeg = 270;
     const jx=450, jy=190;
 
     const g = genAnglesWithAnchors(refDeg, P, 20, 55, jx, jy, 'floor', 'floor');
@@ -834,7 +859,7 @@ window.addEventListener('DOMContentLoaded', () => {
       A1:g.A1, A2:g.A2,
       P,
       forceLabel:'P',
-      member1Kind:'bar',   // mix
+      member1Kind:'bar',
       member2Kind:'cable',
       title:'Joint pulled upward (floor anchors)',
       subtitle:`Find the ${ask==='T1'?'tension in Member 1':'tension in Member 2'}`
@@ -856,12 +881,10 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function qCornerTopLeft_Oblique(){
-    // members toward top-left, force down-right
     const P = rndf(8, 70, 2);
-    const refDeg = 135;              // toward top-left
+    const refDeg = 135;
     const jx=660, jy=360;
 
-    // Member 1 more "left" -> wallLeft, Member 2 more "up" -> ceiling
     const g = genAnglesWithAnchors(refDeg, P, 20, 45, jx, jy, 'wallLeft', 'ceiling');
 
     const ask = pick(['T1','T2']);
@@ -898,12 +921,10 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function qCornerBottomLeft_Oblique(){
-    // members toward bottom-left, force up-right
     const P = rndf(8, 70, 2);
-    const refDeg = 225;              // toward bottom-left
+    const refDeg = 225;
     const jx=650, jy=170;
 
-    // Member 1 more "down" -> floor, Member 2 more "left" -> wallLeft
     const g = genAnglesWithAnchors(refDeg, P, 20, 45, jx, jy, 'floor', 'wallLeft');
 
     const ask = pick(['T1','T2']);
@@ -940,12 +961,10 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function qCornerTopRight_Oblique(){
-    // members toward top-right, force down-left
     const P = rndf(8, 70, 2);
-    const refDeg = 45;               // toward top-right
+    const refDeg = 45;
     const jx=240, jy=360;
 
-    // Member 1 more "up" -> ceiling, Member 2 more "right" -> wallRight
     const g = genAnglesWithAnchors(refDeg, P, 20, 45, jx, jy, 'ceiling', 'wallRight');
 
     const ask = pick(['T1','T2']);
@@ -982,12 +1001,10 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 
   function qCornerBottomRight_Oblique(){
-    // members toward bottom-right, force up-left
     const P = rndf(8, 70, 2);
-    const refDeg = 315;              // toward bottom-right
+    const refDeg = 315;
     const jx=250, jy=170;
 
-    // Member 1 more "right" -> wallRight, Member 2 more "down" -> floor
     const g = genAnglesWithAnchors(refDeg, P, 20, 45, jx, jy, 'wallRight', 'floor');
 
     const ask = pick(['T1','T2']);
@@ -1056,7 +1073,18 @@ window.addEventListener('DOMContentLoaded', () => {
       const g = gens.length
         ? gens.splice(Math.floor(Math.random()*gens.length),1)[0]
         : GENERATORS[Math.floor(Math.random()*(GENERATORS.length))];
-      qs.push(g());
+
+      // Safety: never allow a broken/NaN question into the set
+      let q=null;
+      for(let tries=0; tries<25; tries++){
+        q = g();
+        const test = q?.check?.().val;
+        if(isFinite(test) && test > 0) break;
+        q = null;
+      }
+      if(!q) q = qCeiling_HangingWeight();
+
+      qs.push(q);
     }
     return qs;
   }
@@ -1130,7 +1158,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   function checkCurrent(){
     const { val } = currentQ.check();
-    const expected = round2(val);
+
+    // Expected value is defined as “rounded to 2 d.p.” for the mark scheme
+    const expected100 = toHundredths(val);
+    const expected = expected100 / 100;
 
     const stu = parseNum($ansVal);
 
@@ -1218,5 +1249,6 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('startModal').style.display='flex';
 });
 </script>
+
 </body>
 </html>

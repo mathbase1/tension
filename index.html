@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en-GB" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0a101b">
+<meta name="description" content="Two-member tension-joint practice for engineering maths. Clearly anchored, dimensioned diagrams; timed and target sessions; light and dark themes.">
+<title>Statics Studio · T Level Engineering Maths</title>
+<script>try{let t=localStorage.getItem('statics-studio.v2.theme');document.documentElement.dataset.theme=t==='light'||t==='dark'?t:(matchMedia('(prefers-color-scheme: light)').matches?'light':'dark')}catch(e){}</script>
+<style>:root{color-scheme:dark;--bg:#0a101b;--surface:#111c2b;--raised:#172638;--soft:#152235;--ink:#edf4fc;--muted:#a5b6cc;--line:#2c4057;--m1:#64d6fa;--m2:#ffbf69;--force:#ff8c9b;--datum:#a6a6ff;--fixed:#78dfb0;--good:#89e8b7;--bad:#ff9daa;--accent:#8fe0f5;--on-accent:#092330;--grid:#20364c;--concrete:#293a4c;--hatch:#506175;--steel:#526b83;--metal:#a2b7ca;--label:#142337;--shadow:0 18px 60px #0003;--radius:22px;--mono:ui-monospace,SFMono-Regular,Consolas,"Liberation Mono",monospace;--sans:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+:root[data-theme="light"]{color-scheme:light;--bg:#eef3f7;--surface:#ffffff;--raised:#f1f6fa;--soft:#eaf1f7;--ink:#152b42;--muted:#52667b;--line:#c7d5e2;--m1:#007695;--m2:#945100;--force:#bd2848;--datum:#5e53be;--fixed:#157450;--good:#12663f;--bad:#b51c3a;--accent:#006e8b;--on-accent:#fff;--grid:#dce7ef;--concrete:#dbe4ec;--hatch:#97aabb;--steel:#647e94;--metal:#b9cbd9;--label:#ffffff;--shadow:0 16px 48px #28435b12}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.55;min-width:280px}button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.45}button,input,select,summary{touch-action:manipulation}button,select,input{color:inherit}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible,a:focus-visible{outline:3px solid var(--m1);outline-offset:4px}button{transition:background .15s,border-color .15s,transform .15s}button:not(:disabled):active{transform:translateY(1px)}[hidden]{display:none!important}p{margin:0 0 .65rem}h1,h2,h3{line-height:1.15;margin:0;letter-spacing:-.035em}h1{font-size:1.3rem}h2{font-size:clamp(1.6rem,2.4vw,2.25rem)}h3{font-size:1.15rem}a{color:var(--m1);text-underline-offset:3px}math{font-size:1.08em;color:inherit}math[display=block]{margin:.75rem 0;overflow-x:auto;max-width:100%;padding:.3rem 0}input,select{border:1px solid var(--line);background:var(--bg);border-radius:11px;padding:11px 13px;max-width:100%;min-width:0}input[type=radio]{accent-color:var(--m1);width:16px;height:16px;padding:0}input[type=checkbox]{accent-color:var(--m1)}fieldset{margin:0;padding:0;border:0;min-width:0}legend,label.form-label{font-weight:650;font-size:.85rem;display:block;margin-bottom:8px}::selection{background:var(--m1);color:var(--bg)}.icon{height:19px;width:19px;flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}.icon-btn{display:inline-flex;gap:8px;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:11px;background:var(--surface);padding:9px 12px;font-size:.8rem;font-weight:650}.icon-btn:hover:not(:disabled),.secondary:hover:not(:disabled){background:var(--raised);border-color:var(--muted)}.primary,.secondary,.quiet{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;border-radius:12px;padding:10px 16px;font-weight:700;border:1px solid transparent}.primary{background:var(--accent);color:var(--on-accent)}.primary:hover:not(:disabled){filter:brightness(1.08)}.secondary{background:var(--raised);border-color:var(--line);color:var(--ink)}.quiet{background:transparent;color:var(--muted);border-color:var(--line);font-weight:550}.quiet:hover:not(:disabled){color:var(--ink);background:var(--raised)}.small-btn{min-height:36px;font-size:.8rem;padding:7px 11px}.muted{color:var(--muted)}.micro{font-size:.75rem}.eyebrow{font-size:.69rem;letter-spacing:.17em;font-weight:750;text-transform:uppercase;color:var(--muted)}.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}.full{width:100%}.topbar{max-width:1550px;margin:auto;padding:22px 30px;display:flex;align-items:center;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:13px}.brandmark{width:44px;height:44px;border:1px solid var(--line);border-radius:12px;background:var(--surface);display:grid;place-items:center}.brandmark svg{width:32px;height:32px}.brand .eyebrow{font-size:.57rem;letter-spacing:.15em;margin-bottom:3px}.header-actions{display:flex;align-items:center;gap:8px}.app{max-width:1550px;margin:auto;padding:26px 30px 42px}.session-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px;flex-wrap:wrap}.session-stats{display:flex;align-items:center;gap:22px;flex-wrap:wrap}.session-item{display:flex;align-items:center;gap:9px;font-size:.84rem}.session-item strong{font-variant-numeric:tabular-nums;font-weight:650;max-width:170px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.session-item .eyebrow{font-size:.62rem;letter-spacing:.09em}.stat-label{color:var(--muted);font-size:.7rem;line-height:1.4}.stat-dot{height:8px;width:8px;border-radius:50%;background:var(--fixed);box-shadow:0 0 0 5px color-mix(in srgb,var(--fixed) 9%,transparent);margin-right:4px}.timer-warning{color:var(--force)}.session-tools{display:flex;gap:8px}.workspace{display:grid;grid-template-columns:minmax(0,1fr) 326px;gap:22px;align-items:start}.left-col{min-width:0}.brief{margin:0 0 19px}.brief-top{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-bottom:10px}.drawing-id{color:var(--m1);font-family:var(--mono);letter-spacing:.12em;font-size:.72rem}.brief h2{margin-bottom:10px}.brief p{max-width:86ch;font-size:.92rem;color:var(--muted)}.brief .context{color:var(--ink)}.data-strip{display:grid;grid-template-columns:1.1fr 1fr 1fr;border:1px solid var(--line);border-radius:15px;overflow:hidden;margin-bottom:15px;background:var(--surface)}.datum-cell{padding:12px 17px;min-width:0}.datum-cell+.datum-cell{border-left:1px solid var(--line)}.datum-cell .small-label{display:block;font-size:.66rem;color:var(--muted);margin-bottom:2px;letter-spacing:.07em;text-transform:uppercase}.datum-cell .value{display:block;font-size:1.12rem;font-weight:650;font-variant-numeric:tabular-nums}.datum-cell:nth-child(1) .value{color:var(--force)}.datum-cell:nth-child(2) .value{color:var(--m1)}.datum-cell:nth-child(3) .value{color:var(--m2)}.drawing-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}.drawing-toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--line);flex-wrap:wrap}.segmented{display:inline-flex;gap:3px;border-radius:10px;background:var(--bg);padding:3px;border:1px solid var(--line)}.segmented button{border:0;background:transparent;border-radius:7px;padding:6px 10px;font-size:.75rem;color:var(--muted);font-weight:600}.segmented button[aria-pressed=true]{background:var(--raised);color:var(--ink);box-shadow:0 1px 4px #0001}.drawing-scroll{width:100%;overflow:auto;overscroll-behavior-x:contain;scrollbar-color:var(--line) var(--surface);background:var(--surface)}.drawing-svg{display:block;width:100%;min-width:640px;height:auto;background:var(--surface);font-family:var(--sans);isolation:isolate}.drawing-svg text{user-select:none}.drawing-svg .svg-ink{fill:var(--ink)}.drawing-svg .svg-muted{fill:var(--muted)}.drawing-svg .member-part{transition:filter .2s}.drawing-svg[data-focus="1"] .member-2,.drawing-svg[data-focus="2"] .member-1{opacity:.28}.drawing-svg .member-group{cursor:pointer;outline:none}.drawing-svg .member-group:hover .member-part{filter:drop-shadow(0 0 5px currentColor)}.drawing-svg .member-group:focus-visible .member-part{filter:drop-shadow(0 0 6px currentColor)}.drawing-svg .label-box{fill:var(--label);stroke:var(--line);stroke-width:1}.drawing-svg .label-text{font-family:var(--sans);font-size:17px;font-weight:650;dominant-baseline:central}.drawing-svg .anchor-text{font-size:18px;font-weight:800;fill:var(--ink);dominant-baseline:central;text-anchor:middle}.drawing-svg .svg-title{font-family:var(--mono);font-size:12px;letter-spacing:1.3px;fill:var(--muted)}.drawing-svg .svg-caption{font-size:13px;fill:var(--muted)}.drawing-legend{display:flex;align-items:center;gap:14px;padding:13px 17px;border-top:1px solid var(--line);flex-wrap:wrap;font-size:.74rem;color:var(--muted);background:var(--raised)}.legend-member{display:inline-flex;align-items:center;gap:7px;border:0;padding:0;color:var(--ink);background:transparent;font-size:.74rem}.legend-member[aria-pressed=true]{font-weight:750;text-decoration:underline;text-underline-offset:3px}.legend-line{width:22px;display:inline-block;border-top:3px solid var(--m1);border-radius:3px;flex:none}.legend-line.m2{border-color:var(--m2);border-top-width:5px}.legend-line.ref{border-color:var(--datum);border-top-style:dashed;border-top-width:2px}.legend-box{display:inline-block;width:14px;height:14px;flex:none;border:1px solid var(--fixed);background:repeating-linear-gradient(135deg,transparent,transparent 3px,var(--line) 3px,var(--line) 5px)}.small-screen-note{display:none;font-size:.72rem;color:var(--muted);padding:8px 14px;border-top:1px solid var(--line)}.fixing-note{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:15px 17px;margin-top:13px;border:1px solid var(--line);border-radius:14px;background:var(--surface);font-size:.8rem}.fixing-note>.icon{color:var(--fixed);margin-top:2px}.fixing-note strong{font-weight:650;color:var(--ink)}.fixing-note p{margin:0;color:var(--muted)}.fixing-note p+p{margin-top:5px}.answer-panel{border:1px solid var(--line);border-radius:var(--radius);padding:22px;background:var(--surface);position:sticky;top:20px;box-shadow:var(--shadow)}.answer-panel .eyebrow{color:var(--m1);margin-bottom:12px}.task{font-size:1.12rem;line-height:1.45;font-weight:600;margin-bottom:16px}.answer-label{font-size:.78rem;font-weight:650;margin-bottom:8px;display:block}.answer-entry{display:flex;align-items:center;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow:hidden}.answer-entry:focus-within{outline:2px solid var(--m1);outline-offset:3px}.answer-entry input{border:0;border-radius:0;font-size:1.6rem;font-family:var(--mono);font-variant-numeric:tabular-nums;width:100%;padding:15px 14px;outline:none!important;background:transparent}.answer-entry .unit{padding-right:13px;font-size:.86rem;color:var(--muted)}.precision{font-size:.73rem;color:var(--muted);margin:10px 0 16px;line-height:1.6}.answer-actions{display:grid;gap:9px}.feedback{margin-top:15px;padding:13px;border-radius:12px;background:var(--raised);font-size:.85rem;line-height:1.5;border:1px solid var(--line)}.feedback.ok{border-color:color-mix(in srgb,var(--good) 60%,var(--line));color:var(--good)}.feedback.no{border-color:color-mix(in srgb,var(--bad) 60%,var(--line));color:var(--bad)}.feedback strong{display:block;font-size:.92rem;margin-bottom:3px}.feedback .range{display:block;font-size:.74rem;color:var(--muted);margin-top:5px}.helper-tools{margin-top:19px;padding-top:17px;border-top:1px solid var(--line);display:grid;gap:10px}.calculator-launch{justify-content:space-between}.hint-box{border:1px solid var(--line);border-radius:12px;background:var(--surface);margin-top:12px;overflow:hidden}summary{cursor:pointer;padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;font-weight:650;font-size:.81rem;list-style:none}summary::-webkit-details-marker{display:none}summary:after{content:'+';font-size:1.1rem;color:var(--muted)}details[open]>summary:after{content:'−'}.hint-content{padding:0 14px 14px;color:var(--muted);font-size:.79rem}.hint-content p:last-child{margin-bottom:0}.hint-content math{color:var(--ink)}.workings{padding:0 17px 17px;font-size:.84rem}.workings .step{padding:13px 0;border-top:1px solid var(--line)}.workings .step:first-child{border-top:0}.step-heading{display:flex;align-items:center;gap:9px;font-weight:650;margin-bottom:8px}.step-number{width:22px;height:22px;flex:none;display:inline-grid;place-items:center;border-radius:6px;background:var(--raised);color:var(--m1);font-family:var(--mono);font-size:.72rem}.workings p{color:var(--muted);font-size:.8rem}.workings .result-box{padding:13px;background:var(--raised);border-radius:12px;color:var(--ink);font-size:1rem}.session-footer{display:flex;justify-content:space-between;gap:15px;margin-top:25px;flex-wrap:wrap;color:var(--muted);font-size:.72rem}.text-btn{border:0;background:transparent;color:var(--muted);font-size:inherit;text-decoration:underline;text-underline-offset:4px;padding:0}.start-layout{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(330px,.8fr);gap:32px;align-items:start}.start-intro{padding-top:12px}.start-intro h2{font-size:clamp(2.1rem,4.2vw,4rem);max-width:14ch;line-height:1.08;letter-spacing:-.055em;margin:15px 0 17px}.start-intro h2 span{color:var(--m1)}.start-intro>p{max-width:57ch;color:var(--muted);font-size:.95rem}.preview-card{border:1px solid var(--line);border-radius:20px;margin-top:24px;overflow:hidden;background:var(--surface)}.preview-card .drawing-svg{min-width:0}.preview-card .preview-caption{padding:11px 17px;border-top:1px solid var(--line);color:var(--muted);font-size:.72rem;display:flex;gap:9px;align-items:center}.setup-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}.setup-card h3{font-size:1.4rem;margin-bottom:6px}.setup-card .setup-sub{color:var(--muted);font-size:.81rem;margin-bottom:23px}.form-group{margin-bottom:20px}.form-group input[type=text]{width:100%}.mode-options{display:grid;grid-template-columns:1fr 1fr;gap:8px}.radio-card{display:flex;align-items:flex-start;gap:9px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);cursor:pointer;font-size:.82rem;line-height:1.5}.radio-card input{margin:4px 0 0}.radio-card:has(input:checked){border-color:var(--m1);background:color-mix(in srgb,var(--m1) 5%,var(--surface))}.radio-card strong{display:block;font-size:.82rem;font-weight:650}.radio-card small{font-size:.69rem;color:var(--muted);display:block}.time-options{display:flex;flex-wrap:wrap;gap:7px}.time-pill{display:flex;gap:6px;align-items:center;border:1px solid var(--line);border-radius:9px;background:var(--bg);padding:7px 9px;cursor:pointer;font-size:.72rem}.time-pill input{margin:0;width:13px;height:13px}.time-pill:has(input:checked){border-color:var(--m1)}.two-fields{display:grid;grid-template-columns:1fr 1fr;gap:15px}.two-fields input,.two-fields select{width:100%}.setup-note{border-top:1px solid var(--line);padding-top:15px;margin-top:17px;font-size:.72rem;color:var(--muted);line-height:1.7}.form-error{color:var(--bad);font-size:.8rem;margin-bottom:12px}.summary-card{max-width:870px;margin:30px auto;padding:32px;background:var(--surface);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}.summary-card h2{margin:8px 0 12px}.summary-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:24px 0}.summary-stat{padding:19px;background:var(--raised);border-radius:14px}.summary-stat strong{display:block;font-size:1.9rem;line-height:1.2;color:var(--m1);font-family:var(--mono);font-weight:550}.summary-stat span{font-size:.75rem;color:var(--muted)}.summary-info{font-size:.85rem;color:var(--muted);margin-bottom:22px}.review-scroll{overflow:auto;max-height:420px}.review-table{width:100%;border-collapse:collapse;font-size:.78rem;text-align:left;min-width:530px}.review-table th{color:var(--muted);font-weight:600;background:var(--raised)}.review-table td,.review-table th{padding:10px 12px;border-bottom:1px solid var(--line)}.review-table .correct{color:var(--good)}.review-table .incorrect{color:var(--bad)}.summary-actions{display:flex;gap:10px;margin-top:23px;flex-wrap:wrap}dialog{color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:22px;box-shadow:0 24px 100px #0007;padding:0;max-width:calc(100vw - 24px);max-height:calc(100dvh - 24px)}dialog::backdrop{background:#040a14bc;backdrop-filter:blur(6px)}.modal-header{padding:18px 21px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;gap:15px}.modal-header h2{font-size:1.15rem;letter-spacing:-.02em}.modal-content{padding:21px;overflow:auto}.modal-content p{font-size:.87rem;color:var(--muted)}.modal-content h3{font-size:.98rem;margin:20px 0 10px}.modal-content h3:first-child{margin-top:0}.info-dialog{width:690px}.close-btn{width:35px;height:35px;padding:7px;border:1px solid var(--line);background:var(--raised);border-radius:9px;display:grid;place-items:center;flex:none}.close-btn .icon{width:16px;height:16px}.model-points{display:grid;gap:9px}.model-point{border:1px solid var(--line);background:var(--raised);padding:13px 15px;border-radius:12px;font-size:.83rem}.model-point strong{display:block;margin-bottom:4px}.source-notes{border-top:1px solid var(--line);margin-top:20px;padding-top:15px}.source-notes p{font-size:.74rem}.zoom-dialog{width:1320px}.zoom-toolbar{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.zoom-toolbar button{min-width:35px}.zoom-viewport{width:100%;max-height:calc(100dvh - 140px);height:min(70vh,850px);overflow:auto;background:var(--surface);cursor:grab;touch-action:pan-x pan-y}.zoom-viewport.dragging{cursor:grabbing}.zoom-viewport .drawing-svg{min-width:0;max-width:none}.zoom-footer{padding:9px 18px;font-size:.73rem;color:var(--muted);border-top:1px solid var(--line)}.new-dialog{width:500px}.new-dialog .setup-card{border:0;box-shadow:none}.new-warning{font-size:.78rem;padding:12px;border:1px solid var(--line);background:var(--raised);border-radius:11px;margin-bottom:17px;color:var(--muted)}.calc{position:fixed;right:24px;bottom:22px;width:324px;max-width:calc(100vw - 16px);z-index:50;border:1px solid var(--line);border-radius:19px;background:var(--surface);box-shadow:0 18px 80px #0006;overflow:hidden}.calc-head{display:flex;align-items:center;justify-content:space-between;padding:11px 13px;cursor:move;background:var(--raised);border-bottom:1px solid var(--line);touch-action:none}.calc-head strong{font-size:.81rem}.calc-head .degree{font-family:var(--mono);font-size:.63rem;color:var(--m1);margin-left:8px;border:1px solid var(--line);padding:3px 5px;border-radius:5px}.calc-body{padding:12px}.calc-input{width:100%;text-align:right;font-family:var(--mono);font-size:1.06rem;min-height:49px}.calc-output{min-height:33px;text-align:right;font-family:var(--mono);font-size:.8rem;color:var(--m1);padding:7px 2px}.calc-keys{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.calc-keys button{height:38px;min-height:0;display:grid;place-items:center;background:var(--raised);border:1px solid var(--line);border-radius:8px;font-size:.86rem;font-weight:600;padding:5px}.calc-keys .function-key{font-size:.73rem;color:var(--m1)}.calc-keys .equals{background:var(--accent);color:var(--on-accent)}.calc-foot{margin-top:8px;color:var(--muted);font-size:.65rem;text-align:center}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:100;background:var(--raised);color:var(--ink);border:1px solid var(--line);border-radius:12px;padding:12px 17px;box-shadow:var(--shadow);max-width:calc(100% - 32px);font-size:.84rem}.noscript{padding:25px;color:var(--bad)}
+@media(min-width:1700px){.workspace{grid-template-columns:minmax(0,1fr) 350px}.answer-panel{padding:26px}}
+@media(max-width:1120px){.workspace{grid-template-columns:minmax(0,1fr) 294px;gap:16px}.app{padding:22px 22px 32px}.topbar{padding:18px 22px}.answer-panel{padding:18px}.session-stats{gap:16px}.start-layout{gap:23px}}
+@media(max-width:950px){.workspace{grid-template-columns:1fr}.answer-panel{position:static;display:grid;grid-template-columns:1fr 1fr;gap:0 24px}.answer-main{grid-row:1/4}.helper-tools{margin-top:0;padding-top:0;border-top:0}.answer-panel>.hint-box{margin-top:10px}.start-layout{grid-template-columns:1fr 360px;gap:22px}.start-intro h2{font-size:2.7rem}.start-intro .preview-card{margin-top:20px}.session-tools{margin-left:auto}}
+@media(max-width:720px){.topbar{padding:14px 16px}.app{padding:19px 15px 27px}.brandmark{width:38px;height:38px}.brand{gap:9px}.brand h1{font-size:1.06rem}.brand .eyebrow{font-size:.49rem}.header-actions .hide-mobile{display:none}.header-actions .icon-btn{padding:9px}.header-actions{gap:6px}.start-layout{grid-template-columns:1fr}.start-intro{padding-top:0}.start-intro h2{font-size:2.8rem;max-width:18ch}.start-intro .preview-card{display:none}.setup-card{padding:22px}.session-bar{gap:13px}.session-stats{gap:12px;width:100%;justify-content:space-between}.session-item{font-size:.79rem}.session-item strong{max-width:94px}.session-item .icon{display:none}.session-tools{margin:0}.brief h2{font-size:1.72rem}.brief p{font-size:.85rem}.data-strip{margin-bottom:12px}.datum-cell{padding:11px 12px}.datum-cell .value{font-size:1.03rem}.datum-cell .small-label{font-size:.56rem}.drawing-toolbar{padding:11px}.small-screen-note{display:block}.drawing-legend{font-size:.69rem;gap:10px;padding:12px}.legend-member{font-size:.69rem}.fixing-note{font-size:.75rem}.answer-panel{gap:0 18px;padding:19px}.task{font-size:1.04rem}.summary-card{margin:10px 0;padding:23px}.summary-stats{gap:8px}.summary-stat{padding:13px}.summary-stat strong{font-size:1.4rem}.modal-header{padding:13px 15px}.zoom-dialog .modal-header{flex-wrap:wrap;gap:8px}.zoom-dialog .modal-header h2{font-size:.95rem}.zoom-toolbar{gap:4px}.zoom-toolbar .small-btn{font-size:.72rem}.zoom-viewport{max-height:calc(100dvh - 170px);height:65dvh}.info-dialog .modal-content{padding:17px}}
+@media(max-width:480px){.answer-panel{display:block}.helper-tools{margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}.session-item .stat-label{font-size:.62rem}.session-item strong{font-size:.77rem;max-width:75px}.session-stats{gap:6px}.stat-dot{display:none}.session-tools{width:100%;display:grid;grid-template-columns:1fr 1fr}.session-tools button{width:100%}.datum-cell{padding:10px}.datum-cell .value{font-size:.93rem}.data-strip{grid-template-columns:1.1fr 1fr 1fr}.drawing-toolbar>.icon-btn{font-size:.72rem;padding:7px}.segmented button{font-size:.7rem;padding:5px 8px}.fixing-note{padding:12px;gap:9px}.fixing-note>.icon{width:16px}.summary-stats{grid-template-columns:1fr 1fr}.summary-stat:last-child{grid-column:1/-1}.summary-stat:last-child strong{display:inline-block;margin-right:10px}.form-group{margin-bottom:18px}.two-fields{gap:12px}.calc{right:8px;bottom:8px}.setup-card{padding:19px}.start-intro h2{font-size:2.35rem}.start-intro>p{font-size:.86rem}.modal-content p{font-size:.8rem}.mode-options{gap:6px}.radio-card{padding:10px}.header-actions #helpBtn{display:none}.brief-top{margin-bottom:8px}}
+@media(max-width:340px){.app{padding:16px 9px 24px}.topbar{padding:12px 9px}.header-actions{gap:4px}.brand h1{font-size:.95rem}.brandmark{width:32px;height:32px}.brandmark svg{width:26px;height:26px}.brand .eyebrow{font-size:.42rem}.mode-options{grid-template-columns:1fr}.two-fields{grid-template-columns:1fr}.data-strip .value{font-size:.82rem}.datum-cell{padding:9px 7px}.drawing-toolbar{gap:7px}.legend-member{font-size:.66rem}.session-item strong{max-width:66px}.setup-card{padding:16px}.answer-panel{padding:16px}.summary-card{padding:17px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
+@media print{.topbar,.session-bar,.start-layout,.session-footer,.answer-panel,.drawing-toolbar,.calc,.toast,dialog,.summary-actions{display:none!important}body{background:#fff;color:#111}.app{padding:0}.workspace{display:block}.drawing-svg{min-width:0}.drawing-card{box-shadow:none}.summary-card{box-shadow:none;border:1px solid #ccc}.review-scroll{max-height:none;overflow:visible}}
+.calc{max-height:calc(100dvh - 16px);overflow-y:auto;overscroll-behavior:contain}.calc-head{position:sticky;top:0;z-index:1}.calc-input{font-size:16px}.calc-output{overflow-wrap:anywhere}.preview-card .member-group{cursor:default}
+
+.session-item strong{display:block}.summary-info{overflow-wrap:anywhere}.drawing-view-tools{display:flex;gap:6px;align-items:center}.fit-btn{display:none}.drawing-scroll.fit-view .drawing-svg{min-width:0}
+@media(max-width:720px){.fit-btn{display:inline-flex}.drawing-view-tools .icon-btn{padding:7px 9px;font-size:.72rem}.drawing-view-tools .icon{width:16px;height:16px}}
+</style>
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true"><defs>
+<symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></symbol>
+<symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></symbol>
+<symbol id="i-full" viewBox="0 0 24 24"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.2"/></symbol>
+<symbol id="i-close" viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+<symbol id="i-right" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+<symbol id="i-calc" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 5h8v4H8zM8 13h1m3 0h1m3 0h.1M8 17h1m3 0h1m3 0h.1"/></symbol>
+<symbol id="i-anchor" viewBox="0 0 24 24"><path d="M2 20h20M5 20v-4h14v4M8 16V9a4 4 0 0 1 8 0v7M3 23l3-3m3 3 3-3m3 3 3-3"/><circle cx="12" cy="9" r="1.5"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-person" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 22v-2a8 8 0 0 1 16 0v2"/></symbol>
+<symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></symbol>
+<symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 10a8 8 0 1 0 0 5M20 3v7h-7"/></symbol>
+</defs></svg>
+<header class="topbar">
+<div class="brand"><div class="brandmark" aria-hidden="true"><svg viewBox="0 0 40 40"><path d="M5 9H35" fill="none" stroke="var(--muted)" stroke-width="3"/><path d="M8 9 20 31" stroke="var(--m1)" stroke-width="2.7"/><path d="M32 9 20 31" stroke="var(--m2)" stroke-width="2.7"/><circle cx="20" cy="31" r="3.5" fill="var(--ink)"/><circle cx="8" cy="9" r="2.5" fill="var(--fixed)"/><circle cx="32" cy="9" r="2.5" fill="var(--fixed)"/></svg></div><div><div class="eyebrow">T Level · Engineering maths</div><h1>Statics Studio</h1></div></div>
+<nav class="header-actions" aria-label="Display and help"><button type="button" class="icon-btn" id="themeBtn" aria-label="Switch to light mode"><svg class="icon" aria-hidden="true"><use href="#i-sun"/></svg><span class="hide-mobile" id="themeLabel">Light mode</span></button><button type="button" class="icon-btn" id="fsBtn" aria-label="Enter full screen"><svg class="icon" aria-hidden="true"><use href="#i-full"/></svg><span class="hide-mobile" id="fsLabel">Full screen</span></button><button type="button" class="icon-btn" id="helpBtn" aria-label="Open model notes"><svg class="icon" aria-hidden="true"><use href="#i-info"/></svg></button></nav>
+</header>
+<main class="app">
+<section id="startScreen" class="start-layout" aria-labelledby="startTitle">
+<div class="start-intro"><div class="eyebrow">Statics / Two-member tension joints</div><h2 id="startTitle">Find the tension.<br><span>Follow the load.</span></h2><p>Work through engineering scenarios with two connected members, visible fixed anchors and a load in static equilibrium.</p><p>Resolve the forces at the joint using the labelled angles.</p><div class="preview-card"><div id="previewDrawing"></div><div class="preview-caption"><svg class="icon" aria-hidden="true"><use href="#i-anchor"/></svg>Fixed structure. Bolted anchors. Pin-connected members.</div></div></div>
+<div id="setupHome"><section class="setup-card" id="setupCard" aria-labelledby="setupTitle"><h3 id="setupTitle">Set up your session</h3><p class="setup-sub">Fresh layouts, loads and engineering briefs.</p><div id="newWarning" class="new-warning" hidden>Starting a new session resets the current score. A running timer continues until you start again.</div>
+<form id="setupForm" novalidate>
+<div class="form-group"><label for="nameInput" class="form-label">Your name <span class="muted">(optional)</span></label><input id="nameInput" type="text" maxlength="70" placeholder="Student name" autocomplete="name"></div>
+<fieldset class="form-group"><legend>Session mode</legend><div class="mode-options"><label class="radio-card"><input type="radio" name="mode" value="timed" checked><span><strong>Timed practice</strong><small>Work at your own pace.</small></span></label><label class="radio-card"><input type="radio" name="mode" value="target"><span><strong>Target practice</strong><small>Reach a correct-answer goal.</small></span></label></div></fieldset>
+<fieldset class="form-group" id="timedField"><legend>Time limit</legend><div class="time-options"><label class="time-pill"><input type="radio" name="tlimit" value="600">10 min</label><label class="time-pill"><input type="radio" name="tlimit" value="1200" checked>20 min</label><label class="time-pill"><input type="radio" name="tlimit" value="1800">30 min</label><label class="time-pill"><input type="radio" name="tlimit" value="0">Unlimited</label></div></fieldset>
+<div class="two-fields"><div class="form-group" id="targetField" hidden><label class="form-label" for="targetInput">Correct-answer target</label><input id="targetInput" type="number" min="1" max="1000" step="1" value="10"></div><div class="form-group"><label class="form-label" for="qtyInput">Questions per batch</label><select id="qtyInput"><option value="8">8 questions</option><option value="10" selected>10 questions</option><option value="12">12 questions</option><option value="15">15 questions</option></select></div></div>
+<div class="form-error" id="setupError" role="alert" hidden></div><button class="primary full" id="startBtn" type="submit">Start session<svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button><button type="button" id="cancelSetupBtn" class="quiet full" style="margin-top:9px" hidden>Keep current session</button>
+</form><div class="setup-note">All eight original layouts are included: ceiling, left wall, right wall, floor and four corners.<br>New batches continue until the timer ends, the target is achieved or you finish.<br>Answers: <strong>±1.00 kN</strong>, checked in <strong>0.01 kN</strong> steps.</div></section></div>
+</section>
+<section id="sessionScreen" hidden aria-label="Engineering practice session">
+<div class="session-bar"><div class="session-stats"><div class="session-item"><span class="stat-dot" aria-hidden="true"></span><div><div class="stat-label">Engineer</div><strong id="whoName">Student</strong></div></div><div class="session-item"><svg class="icon muted" aria-hidden="true"><use href="#i-target"/></svg><div><div class="stat-label" id="modeTxt">Timed practice</div><strong id="targetTxt">Question 1</strong></div></div><div class="session-item"><svg class="icon muted" aria-hidden="true"><use href="#i-clock"/></svg><div><div class="stat-label" id="timerLabel">Time remaining</div><strong class="mono" id="timeTxt">20:00</strong></div></div><div class="session-item"><div><div class="stat-label">Correct / checked</div><strong class="mono" id="scoreTopVal">0 / 0</strong></div></div></div><div class="session-tools"><button type="button" class="quiet small-btn" id="newBtn"><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>New questions</button><button type="button" class="quiet small-btn" id="finishBtn">Finish session</button></div></div>
+<div class="workspace">
+<div class="left-col"><section class="brief" aria-labelledby="qTitle"><div class="brief-top"><span class="drawing-id" id="drawingId">ENGINEERING BRIEF / 01</span><span class="eyebrow" id="progress">Question 1</span></div><h2 id="qTitle"></h2><p class="context" id="context"></p><p id="statement"></p></section>
+<div class="data-strip" id="dataStrip" aria-label="Given values"></div>
+<section class="drawing-card" aria-label="Engineering drawing"><div class="drawing-toolbar"><div class="segmented" aria-label="Diagram view"><button id="assemblyBtn" type="button" aria-pressed="true">Assembly</button><button id="forcesBtn" type="button" aria-pressed="false">Force overlay</button></div><div class="drawing-view-tools"><button class="icon-btn fit-btn" id="fitDrawingBtn" type="button" aria-label="Fit the whole diagram to the screen">Fit</button><button class="icon-btn" id="enlargeBtn" type="button"><svg class="icon" aria-hidden="true"><use href="#i-full"/></svg>Enlarge</button></div></div><div id="drawingScroll" class="drawing-scroll" tabindex="0" aria-label="Engineering diagram; scroll horizontally on a narrow screen"><div id="drawing"></div></div><div class="small-screen-note" id="smallScreenNote">Scroll sideways to inspect the drawing, or select Enlarge.</div><div class="drawing-legend"><button type="button" class="legend-member" data-focus="1" aria-pressed="false"><span class="legend-line"></span><span id="legend1">M1 · cable</span></button><button type="button" class="legend-member" data-focus="2" aria-pressed="false"><span class="legend-line m2"></span><span id="legend2">M2 · tie rod</span></button><span><span class="legend-line ref"></span> Datum</span><span style="display:inline-flex;align-items:center;gap:7px"><span class="legend-box"></span>Fixed structure</span></div></section>
+<div class="fixing-note"><svg class="icon" aria-hidden="true"><use href="#i-anchor"/></svg><div><p id="fixingText"></p><p>Anchor locations are fixed; the end connections are pins.<br>The dashed datum is a reference line, <strong>not an extra member</strong>.</p></div></div>
+<details class="hint-box" id="workingDetails" hidden><summary>Worked solution</summary><div id="workedSolution" class="workings"></div></details>
+</div>
+<aside class="answer-panel" aria-labelledby="taskTitle"><div class="answer-main"><div class="eyebrow">Your calculation</div><h3 class="task" id="taskTitle"></h3><form id="answerForm" novalidate><label for="ansVal" class="answer-label" id="answerLabel">Tension in the requested member</label><div class="answer-entry"><input id="ansVal" type="number" inputmode="decimal" min="0" max="1000000000" step="0.01" autocomplete="off" placeholder="0.00" aria-describedby="precisionNote fbAns"><span class="unit">kN</span></div><p class="precision" id="precisionNote">Round to 2 decimal places.<br>Answers within <strong>±1.00 kN</strong> are accepted, in <strong>0.01 kN</strong> steps.<br>Whole numbers do not need “.00”.</p><div class="answer-actions"><button type="submit" class="primary full" id="checkBtn">Check answer<svg class="icon" aria-hidden="true"><use href="#i-check"/></svg></button><button type="button" class="secondary full" id="nextBtn" disabled>Next question<svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button></div></form><div id="fbAns" class="feedback" role="status" aria-live="polite" aria-atomic="true" hidden></div></div>
+<div class="helper-tools"><button class="secondary calculator-launch" id="calcBtn" type="button" aria-expanded="false" aria-controls="calculator"><span style="display:flex;align-items:center;gap:8px"><svg class="icon" aria-hidden="true"><use href="#i-calc"/></svg>Calculator</span><span class="micro mono muted">DEG</span></button></div>
+<details class="hint-box" id="hintDetails"><summary>Resolve the forces</summary><div class="hint-content"><p>Use axes along the dashed datum and perpendicular to it.</p><p>The sideways components balance.</p><div id="hintPerp"></div><p>The components along the datum balance the applied load.</p><div id="hintParallel"></div><p>Both angles are measured from the <strong>datum</strong>, not from the wall or floor.</p><p>Use your calculator in <strong>degree mode</strong>.</p></div></details>
+<details class="hint-box"><summary>Read the engineering model</summary><div class="hint-content"><p>M1 runs from joint J to anchor A.</p><p>M2 runs from joint J to anchor B.</p><p>Hatching identifies the stationary supporting structure.</p><p>The load arrow is an applied action, not a third support member.</p><p>Member self-weight and joint friction are neglected.</p><button type="button" class="text-btn model-link">More about this model</button></div></details>
+</aside>
+</div>
+</section>
+<section id="endScreen" class="summary-card" hidden aria-labelledby="endTitle"><div class="eyebrow">Session summary</div><h2 id="endTitle">Session complete</h2><p id="endMsg" class="muted"></p><div class="summary-stats"><div class="summary-stat"><strong id="sumScore">0 / 0</strong><span>Correct / checked</span></div><div class="summary-stat"><strong id="sumAccuracy">—</strong><span>Accuracy</span></div><div class="summary-stat"><strong id="sumTime">0:00</strong><span>Time used</span></div></div><p id="summaryInfo" class="summary-info"></p><details class="hint-box"><summary>Review your answers</summary><div class="review-scroll"><table class="review-table"><thead><tr><th>Brief</th><th>Member</th><th>Your answer</th><th>Calculated answer</th><th>Result</th></tr></thead><tbody id="reviewBody"></tbody></table></div></details><div class="summary-actions"><button type="button" class="primary" id="restartBtn">Start another session<svg class="icon" aria-hidden="true"><use href="#i-right"/></svg></button></div></section>
+<footer class="session-footer"><span>Two-member joints · Static equilibrium · Forces in kN</span><button type="button" class="text-btn model-link">Model notes &amp; sources</button></footer>
+</main>
+<dialog id="modelDialog" class="info-dialog" aria-labelledby="modelTitle"><header class="modal-header"><h2 id="modelTitle">Understand the assembly</h2><button class="close-btn" data-close="modelDialog" type="button" aria-label="Close model notes"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></header><div class="modal-content"><div class="model-points"><div class="model-point"><strong>Two members, one joint</strong>M1 and M2 connect at J. The applied load is balanced by tension in these two members. All cases use the same two-member equilibrium content as the original worksheet.</div><div class="model-point"><strong>Fixed locations are not fixed-end joints</strong>The hatched slab, wall or floor is stationary. Bolted clevis plates secure anchors A and B to it. The member ends are ideal pins: their locations cannot move, but they can rotate. No end moment is included.</div><div class="model-point"><strong>The datum is not a third member</strong>Each angle is measured between its member and the dashed reference line. The applied load acts in the opposite direction to that line.</div><div class="model-point"><strong>Use an idealised, two-dimensional model</strong>The members are straight, their self-weight is neglected, the pins are frictionless and the load acts in the plane of the diagram. Both member forces are tensile in every generated case. Any hanging payload is represented by its total weight at J.</div><div class="model-point"><strong>What the drawing does and does not show</strong>The angles agree with the generated geometry. Member lengths and hardware sizes are illustrative, not dimensions to measure. The force overlay retains the installed supports and adds outward tension arrows; it is not a separate free-body diagram.</div><div class="model-point"><strong>Practice marking, not a design tolerance</strong>The calculated answer is rounded to two decimal places. Answers in 0.01 kN steps from 1.00 kN below to 1.00 kN above that value are accepted, including both endpoints. This educational tolerance is not a safe working load or a construction/design tolerance.</div></div><h3>Scope</h3><p>This activity is focused practice for T Level engineering maths, not a complete T Level course or an official examination paper.</p><p>The eight original arrangements, cable and bar combinations, timed/target modes, and single-force calculations are retained. The engineering briefs and illustrations are original training scenarios.</p><div class="source-notes"><p><strong>Engineering context:</strong> the Department for Education’s <a href="https://www.tlevels.gov.uk/students/subjects/design-development-engineering" target="_blank" rel="noopener noreferrer">Design and Development for Engineering and Manufacturing</a> overview includes mathematics, mechanical engineering and structural engineering.</p><p><strong>Mechanics reference:</strong> <a href="https://web.mit.edu/4.441/1_lectures/1_lecture15/1_lecture15.html" target="_blank" rel="noopener noreferrer">MIT — Two- and Three-Force Members</a>, on pin-connected members and the lines of action of their end forces.</p><p>All question generation, diagrams, marking and calculator functions run within this file. An internet connection is only needed to open the reference links. Only the display theme is stored on this device.</p></div></div></dialog>
+<dialog id="zoomDialog" class="zoom-dialog" aria-labelledby="zoomTitle"><header class="modal-header"><h2 id="zoomTitle">Engineering drawing</h2><div class="zoom-toolbar"><button type="button" class="secondary small-btn" id="zoomOut" aria-label="Zoom out">−</button><span class="micro mono" id="zoomPercent">100%</span><button type="button" class="secondary small-btn" id="zoomIn" aria-label="Zoom in">+</button><button type="button" class="quiet small-btn" id="zoomFit">Fit</button><button class="close-btn" data-close="zoomDialog" type="button" aria-label="Close enlarged diagram"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></div></header><div class="zoom-viewport" id="zoomViewport" tabindex="0" aria-label="Enlarged diagram; use the zoom buttons and scroll or drag to pan"><div id="zoomDrawing"></div></div><div class="zoom-footer">Supports remain visible in both views. Zoom in, then drag or scroll to inspect the connections and angle labels.</div></dialog>
+<dialog id="newDialog" class="new-dialog" aria-labelledby="newTitle"><header class="modal-header"><h2 id="newTitle">Start a new session</h2><button class="close-btn" data-close="newDialog" type="button" aria-label="Cancel new session"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></header><div id="setupModalHome"></div></dialog>
+<section id="calculator" class="calc" role="dialog" aria-modal="false" aria-label="Scientific calculator in degree mode" hidden><header class="calc-head" id="calcDrag"><div><strong>Scientific calculator</strong><span class="degree">DEG</span></div><button class="close-btn" id="closeCalc" type="button" aria-label="Close calculator"><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button></header><div class="calc-body"><label class="micro muted" for="calcInput">Expression</label><input id="calcInput" class="calc-input" type="text" inputmode="text" autocomplete="off" spellcheck="false" placeholder="e.g. 24 × sin(46)"><div id="calcOutput" class="calc-output" role="status" aria-live="polite">Angles in degrees</div><div id="calcKeys" class="calc-keys"></div><div class="calc-foot">Keyboard supported · Drag the header to move</div></div></section>
+<div class="toast" id="toast" role="status" hidden></div>
+<noscript><div class="noscript">Enable JavaScript to generate and mark the engineering questions.</div></noscript>
+<script>/* Statics Studio 2.0 — preserves the original eight two-member tension families.
+   All answers are derived from the same 2-by-2 equilibrium solver.
+   No external library, font, image, service or network request is required. */
+'use strict';
+const ENGINE = (() => {
+  const DEG = Math.PI / 180;
+  const MARK_TOL = 1.00, STEP_SCALE = 100, MARK_TOL_100 = 100;
+  const W = 1000, H = 680;
+  const S = { ceiling:130, floor:526, wallLeft:134, wallRight:866, minX:190, maxX:810, minY:164, maxY:488 };
+  const int = (a,b) => Math.floor(Math.random()*(b-a+1))+a;
+  const pick = a => a[int(0,a.length-1)];
+  const shuffle = a => {a=[...a];for(let i=a.length-1;i>0;i--){const j=int(0,i);[a[i],a[j]]=[a[j],a[i]]}return a};
+  const clamp = (n,a,b) => Math.max(a,Math.min(b,n));
+  const n2 = n => Math.round((n + 1e-10)*100)/100;
+  const cents = n => Math.sign(n)*Math.round((Math.abs(n)+1e-10)*STEP_SCALE);
+  const fmt = n => Number.isFinite(n) ? (Number.isInteger(n2(n)) ? String(Math.round(n)) : n2(n).toFixed(2)) : '—';
+  const f = n => Number(n.toFixed(3));
+  const esc = s => String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const point = (p,deg,len) => ({x:p.x+len*Math.cos(deg*DEG),y:p.y-len*Math.sin(deg*DEG)});
+  const dist = (a,b) => Math.hypot(a.x-b.x,a.y-b.y);
+  const lerp = (a,b,t) => ({x:a.x+(b.x-a.x)*t,y:a.y+(b.y-a.y)*t});
+  const textT = i => `<msub><mi>T</mi><mn>${i}</mn></msub>`;
+  const theta = i => `<msub><mi>θ</mi><mn>${i}</mn></msub>`;
+  const mn = n => `<mn>${esc(fmt(n))}</mn>`;
+  const mo = s => `<mo>${s}</mo>`;
+  const math = (s,block=false) => `<math xmlns="http://www.w3.org/1998/Math/MathML"${block?' display="block"':''}><mrow>${s}</mrow></math>`;
+  const angle = n => `${mn(n)}<mo>°</mo>`;
+  const sin = s => `<mi mathvariant="normal">sin</mi><mo>&#x2061;</mo><mrow><mo>(</mo>${s}<mo>)</mo></mrow>`;
+  const cos = s => `<mi mathvariant="normal">cos</mi><mo>&#x2061;</mo><mrow><mo>(</mo>${s}<mo>)</mo></mrow>`;
+  const kindName = k => k==='cable' ? 'cable' : 'tie rod';
+  const memberName = (q,i) => `Member ${i} (${kindName(q.kinds[i-1])})`;
+  function parseHundredths(raw){
+    raw=String(raw).trim();
+    if(!raw || !/^\+?\d+(?:\.\d*)?$/.test(raw)) return {ok:false,message:'Enter a positive number, for example 12.34.'};
+    const [whole,part='']=raw.replace(/^\+/,'').split('.');
+    if(part.slice(2).replace(/0/g,'')!=='') return {ok:false,message:'Use at most two decimal places. The answer step is 0.01 kN.'};
+    const value=Number(whole)*100+Number((part+'00').slice(0,2));
+    if(!Number.isSafeInteger(value) || value<=0 || value>1e11) return {ok:false,message:'Enter a positive, finite force in kN.'};
+    return {ok:true,cents:value,value:value/100};
+  }
+  function withinTolerance(stu,expected){
+    if(!Number.isFinite(stu)||!Number.isFinite(expected))return false;
+    return Math.abs(cents(stu)-cents(expected))<=MARK_TOL_100;
+  }
+  function mark(raw,expected){
+    const parsed=parseHundredths(raw);
+    if(!parsed.ok)return parsed;
+    return {...parsed,correct:Math.abs(parsed.cents-cents(expected))<=MARK_TOL_100,expected:cents(expected)/100};
+  }
+  function solve2x2(a11,a12,b1,a21,a22,b2){
+    const det=a11*a22-a12*a21;
+    if(Math.abs(det)<1e-12)return null;
+    const x=(b1*a22-a12*b2)/det, y=(a11*b2-b1*a21)/det;
+    return Number.isFinite(x)&&Number.isFinite(y)?{x,y,det}:null;
+  }
+  function solveTwoMember(refDeg,th1Deg,th2Deg,P){
+    const a1=(refDeg+th1Deg)*DEG,a2=(refDeg-th2Deg)*DEG,force=(refDeg+180)*DEG;
+    const sol=solve2x2(Math.cos(a1),Math.cos(a2),-P*Math.cos(force),Math.sin(a1),Math.sin(a2),-P*Math.sin(force));
+    return sol?{T1:sol.x,T2:sol.y}:null;
+  }
+  function anchorOn(surface,J,deg){
+    const dx=Math.cos(deg*DEG),dy=-Math.sin(deg*DEG);let t;
+    if(surface==='ceiling'){if(dy>=-1e-8)return null;t=(S.ceiling-J.y)/dy}
+    else if(surface==='floor'){if(dy<=1e-8)return null;t=(S.floor-J.y)/dy}
+    else if(surface==='wallLeft'){if(dx>=-1e-8)return null;t=(S.wallLeft-J.x)/dx}
+    else if(surface==='wallRight'){if(dx<=1e-8)return null;t=(S.wallRight-J.x)/dx}
+    else return null;
+    if(t<=0||!Number.isFinite(t))return null;
+    const A={x:J.x+t*dx,y:J.y+t*dy,surface};
+    if(surface==='ceiling'||surface==='floor'){if(A.x<S.minX||A.x>S.maxX)return null}
+    else if(A.y<S.minY||A.y>S.maxY)return null;
+    return A;
+  }
+  const families=[
+    {id:'ceiling',original:'qCeiling_HangingWeight',ref:90,surfaces:['ceiling','ceiling'],kinds:['cable','cable'],range:[6,55],angles:[20,55],j:[440,560,395,427],symbol:'W',direction:'vertically downwards',support:'the overhead structural slab',elevation:'Suspended assembly'},
+    {id:'wallLeft',original:'qWallLeft_PullRight',ref:180,surfaces:['wallLeft','wallLeft'],kinds:['cable','bar'],range:[8,75],angles:[20,38],j:[382,420,314,338],symbol:'P',direction:'horizontally to the right',support:'the left-hand concrete wall',elevation:'Left-wall installation'},
+    {id:'wallRight',original:'qWallRight_PullLeft',ref:0,surfaces:['wallRight','wallRight'],kinds:['bar','bar'],range:[8,75],angles:[20,38],j:[580,618,314,338],symbol:'P',direction:'horizontally to the left',support:'the right-hand concrete wall',elevation:'Right-wall installation'},
+    {id:'floor',original:'qFloor_PullUp',ref:270,surfaces:['floor','floor'],kinds:['bar','cable'],range:[8,80],angles:[20,55],j:[440,560,223,255],symbol:'P',direction:'vertically upwards',support:'the structural floor slab',elevation:'Floor-anchored assembly'},
+    {id:'cornerTL',original:'qCornerTopLeft_Oblique',ref:135,surfaces:['wallLeft','ceiling'],kinds:['bar','cable'],range:[8,70],angles:[20,45],j:[650,696,419,445],symbol:'P',direction:'obliquely downwards and to the right',support:'the left wall and overhead slab',elevation:'Wall–soffit connection'},
+    {id:'cornerBL',original:'qCornerBottomLeft_Oblique',ref:225,surfaces:['floor','wallLeft'],kinds:['bar','bar'],range:[8,70],angles:[20,45],j:[650,696,207,233],symbol:'P',direction:'obliquely upwards and to the right',support:'the floor slab and left wall',elevation:'Wall–floor connection'},
+    {id:'cornerTR',original:'qCornerTopRight_Oblique',ref:45,surfaces:['ceiling','wallRight'],kinds:['cable','cable'],range:[8,70],angles:[20,45],j:[304,350,419,445],symbol:'P',direction:'obliquely downwards and to the left',support:'the overhead slab and right wall',elevation:'Soffit–wall connection'},
+    {id:'cornerBR',original:'qCornerBottomRight_Oblique',ref:315,surfaces:['wallRight','floor'],kinds:['bar','cable'],range:[8,70],angles:[20,45],j:[304,350,207,233],symbol:'P',direction:'obliquely upwards and to the left',support:'the right wall and floor slab',elevation:'Floor–wall connection'}
+  ];
+  // Original, fictional briefs: applications change; the two-member maths does not.
+  const scenarios={
+    ceiling:[
+      {title:'Electric-drive handling station',context:'An electric-drive unit is held stationary beneath two overhead mounting points during installation.',action:'The combined weight of the unit and its lifting attachment acts at J.',payload:'motor'},
+      {title:'Ventilation module installation',context:'A prefabricated ventilation module is suspended from two cables while an installation team checks its alignment.',action:'The total suspended weight is represented at J.',payload:'duct'},
+      {title:'Automation tooling cassette',context:'A tooling cassette is held beneath a factory slab by a two-cable lifting arrangement.',action:'The cassette and its lifting attachment apply their total weight at J.',payload:'cassette'},
+      {title:'Inspection-light service pod',context:'An industrial inspection-light pod is suspended beneath a fixed overhead structure for servicing.',action:'The complete suspended assembly applies its weight at J.',payload:'light'},
+      {title:'Pump assembly lifting point',context:'A pump assembly is held at rest by two suspension cables connected to a common lifting joint.',action:'The total weight of the pump and lifting attachment acts at J.',payload:'pump'}
+    ],
+    wallLeft:[
+      {title:'Actuator reaction fixture',context:'A horizontal actuator test applies a rightward force to a wall-anchored reaction fixture.',action:'The specified test force acts at J; a cable and a pinned tie rod resist it.'},
+      {title:'Conveyor tensioning rig',context:'A conveyor development rig applies a rightward pull to a joint connected to two fixed wall anchors.',action:'The specified belt-tension resultant is transferred to J.'},
+      {title:'Cable-termination proof test',context:'A cable-termination specimen is pulled to the right during a controlled, stationary proof-test stage.',action:'The test force is transferred to the two-member reaction joint J.'},
+      {title:'Robotic gripper load test',context:'A robotic gripper test station applies a horizontal rightward reaction to an anchored fixture.',action:'The given resultant force acts at J while the test is held stationary.'},
+      {title:'Winch reaction assembly',context:'A stationary winch test applies a rightward pull to a wall-mounted two-member reaction assembly.',action:'The specified pulling force acts at the common joint J.'}
+    ],
+    wallRight:[
+      {title:'Hydraulic test-bench restraint',context:'Two pinned steel tie rods connect a hydraulic test-bench joint to a fixed wall on the right.',action:'The specified horizontal test load pulls J to the left.'},
+      {title:'Linear-drive restraint frame',context:'A linear-drive test fixture is restrained by two tie rods anchored to the right-hand wall.',action:'A stationary test applies the specified leftward force at J.'},
+      {title:'Rail-component reaction joint',context:'A rail-component test station transfers a horizontal load into two pinned wall restraints.',action:'The specified resultant acts leftwards at J.'},
+      {title:'Battery-module assembly fixture',context:'A battery-module assembly fixture transfers a horizontal test load through two wall-anchored tie rods.',action:'The test is held stationary with the specified force acting leftwards at J.'},
+      {title:'Materials-testing reaction frame',context:'A materials-testing frame uses two pinned tie rods to connect its reaction joint to a rigid wall.',action:'The specimen load produces the specified leftward force at J.'}
+    ],
+    floor:[
+      {title:'Uplift restraint test',context:'A prototype restraint is connected to two bolted floor anchors by a tie rod and a cable.',action:'The prescribed net uplift force acts at J while the assembly remains stationary.'},
+      {title:'Tethered lifting-head trial',context:'A lifting head is restrained by two members connected to a structural floor slab.',action:'The specified net upward test force is applied at J.'},
+      {title:'Wind-load restraint fixture',context:'A structural test fixture is anchored to the floor to represent an uplift-restraint detail.',action:'The prescribed net upward resultant acts at J; no separate weight force is added.'},
+      {title:'Hydraulic pull-up test',context:'A hydraulic test applies an upward load to a joint restrained by a cable and a steel tie rod.',action:'The specified net test force acts vertically upwards at J.'},
+      {title:'Tethered sensor-platform test',context:'A sensor-platform restraint is connected to two fixed floor anchors for a stationary uplift test.',action:'The specified net upward resultant is transferred to J.'}
+    ],
+    cornerTL:[
+      {title:'Façade-restraint test corner',context:'A façade-restraint test joint is connected to a left-hand wall anchor and an overhead anchor.',action:'The specified outward-and-downward resultant is applied at J.'},
+      {title:'Robot-cell corner restraint',context:'A robot-cell reaction fixture is restrained by a wall tie rod and an overhead cable.',action:'A stationary load case applies the prescribed oblique force at J.'},
+      {title:'Duct-support reaction detail',context:'A duct-support reaction joint is braced to a wall and soffit using two pin-connected members.',action:'The given oblique resultant is transferred to J, opposite the dashed datum.'},
+      {title:'Cable-routing tension fixture',context:'A cable-routing test transfers an oblique pull to a joint restrained at the wall–soffit corner.',action:'The total applied force at J is the specified downward-right resultant.'},
+      {title:'Workshop extraction restraint',context:'An extraction-system restraint connects a common joint to a fixed wall and overhead slab.',action:'A stationary test applies the specified oblique load at J.'}
+    ],
+    cornerBL:[
+      {title:'Machine-base hold-down detail',context:'Two pinned tie rods connect a reaction joint to the floor slab and the left-hand wall.',action:'The prescribed net load pulls J upwards and away from the wall.'},
+      {title:'Turbine-fixture restraint',context:'A turbine-component test fixture transfers its reaction through two corner-anchored tie rods.',action:'The specified net upward-right test force acts at J.'},
+      {title:'Lifting-rig reaction corner',context:'A lifting-rig test point is restrained by tie rods anchored to the floor and left wall.',action:'The given oblique pulling force is applied at J.'},
+      {title:'Press-tool restraint assembly',context:'A press-tool handling fixture uses a floor tie and a wall tie to restrain a common joint.',action:'A stationary test applies the specified upward-right resultant at J.'},
+      {title:'Modular plant restraint',context:'A modular-plant restraint joint is connected to a structural floor and wall by two pinned bars.',action:'The prescribed net force pulls J upwards and to the right.'}
+    ],
+    cornerTR:[
+      {title:'Service-pod corner suspension',context:'Two cables connect a service-pod reaction joint to the overhead slab and the right-hand wall.',action:'The specified total resultant acts obliquely downwards and to the left at J.'},
+      {title:'Inspection-system cable restraint',context:'An inspection-system test fixture transfers an oblique load through two cables at a soffit–wall corner.',action:'The prescribed downward-left force acts at the common joint J.'},
+      {title:'Overhead services test rig',context:'A services test rig is restrained by one soffit cable and one cable connected to a right-hand wall anchor.',action:'The specified load is the total oblique force transferred to J.'},
+      {title:'Lighting-array reaction joint',context:'A lighting-array test joint is connected to a fixed overhead slab and a right-hand wall by two cables.',action:'The stationary load case applies the specified downward-left resultant at J.'},
+      {title:'Sensor-boom restraint point',context:'A sensor-boom test transfers an oblique resultant to a two-cable corner-restraint point.',action:'The given total force acts at J, opposite the dashed datum.'}
+    ],
+    cornerBR:[
+      {title:'Energy-storage restraint test',context:'An energy-storage enclosure restraint connects to the right wall and floor using two members.',action:'The prescribed net upward-left test force acts at the common joint J.'},
+      {title:'Aerospace tooling restraint',context:'An aerospace tooling fixture is restrained by a wall tie rod and a floor cable.',action:'The specified oblique test force pulls J upwards and to the left.'},
+      {title:'Pump-skid corner restraint',context:'A pump-skid reaction fixture is tied to the right-hand wall and the structural floor slab.',action:'The prescribed net load acts upwards and to the left at J.'},
+      {title:'Automation-cell hold-down',context:'An automation-cell test joint is restrained at a floor–wall corner by a tie rod and a cable.',action:'The given net oblique force is applied at J while the fixture is stationary.'},
+      {title:'Vehicle-component test anchor',context:'A vehicle-component test transfers an oblique reaction into a two-member corner restraint.',action:'The specified net upward-left force acts at J.'}
+    ]
+  };
+  function newHistory(){return {seen:new Set(),familyBag:[],scenarioBags:{},askBag:[],lastFamily:null,lastScenario:{},lastAsk:null}}
+  function nextFamily(h){
+    if(!h.familyBag.length){h.familyBag=shuffle(families.map(f=>f.id));if(h.familyBag[0]===h.lastFamily)[h.familyBag[0],h.familyBag[1]]=[h.familyBag[1],h.familyBag[0]]}
+    const id=h.familyBag.shift();h.lastFamily=id;return id;
+  }
+  function nextScenario(id,h){
+    let bag=h.scenarioBags[id];
+    if(!bag||!bag.length){bag=shuffle(scenarios[id].map((_,i)=>i));if(bag[0]===h.lastScenario[id])[bag[0],bag[1]]=[bag[1],bag[0]];h.scenarioBags[id]=bag}
+    const n=bag.shift();h.lastScenario[id]=n;return n;
+  }
+  function nextAsk(h){if(!h.askBag.length)h.askBag=shuffle([1,2]);const ask=h.askBag.shift();h.lastAsk=ask;return ask}
+  function fingerprint(q){return [q.family,q.ref,q.th1,q.th2,cents(q.P),q.ask,...q.kinds].join('|')}
+  function validateQuestion(q){
+    if(!q||!Number.isFinite(q.T1)||!Number.isFinite(q.T2)||q.T1<=0||q.T2<=0)return false;
+    if(q.A1.surface!==q.surfaces[0]||q.A2.surface!==q.surfaces[1])return false;
+    for(const [i,a] of [[1,q.A1],[2,q.A2]]){
+      const b=anchorOn(q.surfaces[i-1],q.J,q.ref+(i===1?q.th1:-q.th2));
+      if(!b||dist(a,b)>1e-7||dist(a,q.J)<160)return false;
+    }
+    const a1=(q.ref+q.th1)*DEG,a2=(q.ref-q.th2)*DEG,fa=(q.ref+180)*DEG;
+    const rx=q.T1*Math.cos(a1)+q.T2*Math.cos(a2)+q.P*Math.cos(fa);
+    const ry=q.T1*Math.sin(a1)+q.T2*Math.sin(a2)+q.P*Math.sin(fa);
+    return Math.abs(rx)<1e-8&&Math.abs(ry)<1e-8;
+  }
+  function createQuestion(id,history,forced={}){
+    const fam=families.find(f=>f.id===id);if(!fam)throw Error('Unknown engineering layout.');
+    const scenarioIndex=forced.scenarioIndex??nextScenario(id,history);
+    const scenario=scenarios[id][scenarioIndex];
+    const ask=forced.ask??nextAsk(history);
+    for(let attempt=0;attempt<2500;attempt++){
+      const ref=forced.ref??(fam.ref+(id.startsWith('corner')?pick([-8,-4,0,0,0,4,8]):0));
+      const J=forced.J??{x:int(fam.j[0],fam.j[1]),y:int(fam.j[2],fam.j[3])};
+      const th1=forced.th1??int(fam.angles[0],fam.angles[1]);
+      const th2=forced.th2??int(fam.angles[0],fam.angles[1]);
+      if(!forced.th1&&!forced.th2&&Math.abs(th1-th2)<4)continue;
+      const A1=anchorOn(fam.surfaces[0],J,ref+th1),A2=anchorOn(fam.surfaces[1],J,ref-th2);
+      if(!A1||!A2||dist(A1,J)<160||dist(A2,J)<160||dist(A1,A2)<90)continue;
+      const P=forced.P??int(fam.range[0]*100,fam.range[1]*100)/100;
+      const sol=solveTwoMember(ref,th1,th2,P);
+      if(!sol||sol.T1<=0||sol.T2<=0||sol.T1>300||sol.T2>300)continue;
+      const q={family:id,original:fam.original,scenarioIndex,title:scenario.title,context:scenario.context,action:scenario.action,payload:scenario.payload??null,ref,J,th1,th2,A1,A2,P,T1:sol.T1,T2:sol.T2,ask,kinds:[...fam.kinds],surfaces:[...fam.surfaces],symbol:fam.symbol,direction:fam.direction,support:fam.support,elevation:fam.elevation};
+      q.answer=ask===1?q.T1:q.T2;q.key=fingerprint(q);
+      if(history.seen.has(q.key))continue;
+      if(!validateQuestion(q))continue;
+      history.seen.add(q.key);return q;
+    }
+    throw Error('A valid anchored layout could not be generated. Start a fresh session to retry.');
+  }
+  function buildSet(n,history){return Array.from({length:n},()=>createQuestion(nextFamily(history),history))}
+
+  // Label layout: every numeric and member callout has a measured box, collision
+  // tests against supports, members, datum, load, pins, arcs and other labels.
+  const measureCanvas=document.createElement('canvas');
+  const measureContext=measureCanvas.getContext('2d');
+  function labelWidth(text){measureContext.font='650 17px system-ui';return Math.ceil(measureContext.measureText(text).width)+24}
+  const intersects=(a,b,pad=0)=>a.x-pad<b.x+b.w&&a.x+a.w+pad>b.x&&a.y-pad<b.y+b.h&&a.y+a.h+pad>b.y;
+  function segmentRect(a,b,r,pad=0){
+    const x0=r.x-pad,x1=r.x+r.w+pad,y0=r.y-pad,y1=r.y+r.h+pad;
+    const dx=b.x-a.x,dy=b.y-a.y;
+    let lo=0,hi=1;
+    for(const [p,vmin,vmax,d] of [[a.x,x0,x1,dx],[a.y,y0,y1,dy]]){
+      if(Math.abs(d)<1e-9){if(p<vmin||p>vmax)return false;continue}
+      let t1=(vmin-p)/d,t2=(vmax-p)/d;if(t1>t2)[t1,t2]=[t2,t1];
+      lo=Math.max(lo,t1);hi=Math.min(hi,t2);if(lo>hi)return false;
+    }
+    return true;
+  }
+  function supportRects(q){
+    const out=[];
+    for(const s of new Set(q.surfaces)){
+      if(s==='ceiling')out.push({x:48,y:57,w:904,h:70});
+      if(s==='floor')out.push({x:48,y:529,w:904,h:77});
+      if(s==='wallLeft')out.push({x:47,y:57,w:84,h:548});
+      if(s==='wallRight')out.push({x:869,y:57,w:84,h:548});
+    }
+    return out;
+  }
+  function anglePath(J,r,start,end){
+    const a=point(J,start,r),b=point(J,end,r);let d=end-start;
+    while(d>180)d-=360;while(d< -180)d+=360;
+    return `M${f(a.x)} ${f(a.y)} A${r} ${r} 0 0 ${d>0?0:1} ${f(b.x)} ${f(b.y)}`;
+  }
+  function calcGeometry(q){
+    const refEnd=point(q.J,q.ref,(q.family==='wallLeft'||q.family==='wallRight')?166:194);
+    const forceLength=q.family==='ceiling'?180:(q.family==='floor'?155:168);
+    const forceEnd=point(q.J,q.ref+180,forceLength);
+    const segments=[{a:q.J,b:q.A1,pad:10},{a:q.J,b:q.A2,pad:10},{a:q.J,b:refEnd,pad:4},{a:q.J,b:forceEnd,pad:7}];
+    const obstacles=[...supportRects(q),{x:q.J.x-26,y:q.J.y-26,w:52,h:52},{x:10,y:7,w:980,h:32},{x:10,y:640,w:980,h:35}];
+    for(const A of [q.A1,q.A2])obstacles.push({x:A.x-19,y:A.y-20,w:38,h:40});
+    const payload=q.payload?{x:q.J.x-57,y:q.J.y+79,w:114,h:65}:null;
+    if(payload)obstacles.push({...payload});
+    for(const [r,end] of [[77,q.ref+q.th1],[98,q.ref-q.th2]]){
+      const steps=12;
+      for(let i=0;i<steps;i++)segments.push({a:point(q.J,q.ref+(end-q.ref)*i/steps,r),b:point(q.J,q.ref+(end-q.ref)*(i+1)/steps,r),pad:3});
+    }
+    const labels=[];
+    function place(id,text,target,candidates,colour){
+      const w=labelWidth(text),h=32;
+      const fits=c=>{
+        const box={x:c.x-w/2,y:c.y-h/2,w,h};
+        if(box.x<24||box.x+w>976||box.y<43||box.y+h>632)return null;
+        if(obstacles.some(o=>intersects(box,o,4)))return null;
+        if(labels.some(l=>intersects(box,l.box,8)))return null;
+        if(segments.some(s=>segmentRect(s.a,s.b,box,s.pad)))return null;
+        return box;
+      };
+      let chosen=null,best=Infinity;
+      const evaluate=(c,order)=>{
+        const box=fits(c);if(!box)return;
+        let score=dist(c,target)+order*.12;
+        // Keep leaders away from previous labels; leader crossings are penalised.
+        for(const l of labels){if(segmentRect(target,c,l.box,3))score+=800;if(segmentRect(l.target,l.center,box,3))score+=800}
+        if(score<best){best=score;chosen={id,text,target,center:c,box,colour}}
+      };
+      candidates.forEach(evaluate);
+      if(!chosen||best>750){let k=0;for(let y=66;y<=608;y+=20)for(let x=65;x<=935;x+=20)evaluate({x,y},100+(k++))}
+      if(!chosen)throw Error('Unable to place an engineering annotation without a collision.');
+      labels.push(chosen);
+    }
+    // Known load is reserved first, then angular dimensions, then member labels.
+    const loadPoint=lerp(q.J,forceEnd,.72),forceNormal={x:Math.sin((q.ref+180)*DEG),y:Math.cos((q.ref+180)*DEG)};
+    const forceCandidates=[];
+    for(const t of [.65,.88,1.10,.42])for(const offset of [63,-63,93,-93,125,-125]){
+      const p=lerp(q.J,forceEnd,t);forceCandidates.push({x:p.x+forceNormal.x*offset,y:p.y+forceNormal.y*offset});
+    }
+    place('load',`${q.symbol} = ${fmt(q.P)} kN`,loadPoint,forceCandidates,'var(--force)');
+    // Reserve the datum beside its own dashed line before dimension labels.
+    const refCandidates=[];
+    const refNormal={x:Math.sin(q.ref*DEG),y:Math.cos(q.ref*DEG)};
+    for(const t of [1.3,1.5,1.03,.86,1.17])for(const off of [0,34,-34,62,-62]){const p=lerp(q.J,refEnd,t);refCandidates.push({x:p.x+refNormal.x*off,y:p.y+refNormal.y*off})}
+    place('datum','Datum',refEnd,refCandidates,'var(--datum)');
+    for(let i=1;i<=2;i++){
+      const sign=i===1?1:-1,th=i===1?q.th1:q.th2,mid=q.ref+sign*th/2,r=i===1?77:98;
+      const target=point(q.J,mid,r),candidates=[];
+      for(const rad of [129,155,182,209,236])for(const delta of [0,-5,5,-10,10])candidates.push(point(q.J,mid+delta,rad));
+      place(`angle${i}`,`θ${i===1?'₁':'₂'} = ${th}°`,target,candidates,`var(--m${i})`);
+    }
+    for(let i=1;i<=2;i++){
+      const A=i===1?q.A1:q.A2,deg=q.ref+(i===1?q.th1:-q.th2),a=deg*DEG;
+      const normal=i===1?{x:-Math.sin(a),y:-Math.cos(a)}:{x:Math.sin(a),y:Math.cos(a)};
+      const candidates=[];
+      for(const t of [.53,.65,.4,.76,.31])for(const off of [44,64,88,114,-58,-90]){const p=lerp(q.J,A,t);candidates.push({x:p.x+normal.x*off,y:p.y+normal.y*off})}
+      place(`member${i}`,`M${i} · ${kindName(q.kinds[i-1])}`,lerp(q.J,A,.55),candidates,`var(--m${i})`);
+    }
+    return {refEnd,forceEnd,payload,labels,segments,obstacles};
+  }
+  function line(a,b,attrs=''){return `<line x1="${f(a.x)}" y1="${f(a.y)}" x2="${f(b.x)}" y2="${f(b.y)}" ${attrs}/>`}
+  function rect(r,attrs=''){return `<rect x="${f(r.x)}" y="${f(r.y)}" width="${f(r.w)}" height="${f(r.h)}" ${attrs}/>`}
+  function bolt(x,y){return `<circle cx="${x}" cy="${y}" r="4.6" fill="var(--metal)" stroke="var(--ink)" stroke-width="1.1"/><path d="M${x-2.2} ${y}h4.4" stroke="var(--steel)" stroke-width="1.2"/>`}
+  function drawSupports(q,prefix){
+    let out='';
+    for(const s of new Set(q.surfaces)){
+      let b,rail,txt='';
+      if(s==='ceiling'){b={x:50,y:60,w:900,h:46};rail={x:128,y:103,w:744,h:7};txt='<text x="500" y="49" text-anchor="middle" class="svg-title">FIXED STRUCTURAL SOFFIT</text>'}
+      if(s==='floor'){b={x:50,y:550,w:900,h:52};rail={x:128,y:545,w:744,h:7};txt='<text x="500" y="626" text-anchor="middle" class="svg-title">FIXED STRUCTURAL FLOOR SLAB</text>'}
+      if(s==='wallLeft'){b={x:50,y:60,w:60,h:542};rail={x:107,y:136,w:7,h:384};txt='<text transform="translate(29 330) rotate(-90)" text-anchor="middle" class="svg-title">FIXED CONCRETE WALL</text>'}
+      if(s==='wallRight'){b={x:890,y:60,w:60,h:542};rail={x:886,y:136,w:7,h:384};txt='<text transform="translate(975 330) rotate(90)" text-anchor="middle" class="svg-title">FIXED CONCRETE WALL</text>'}
+      out+=`<g class="fixed-structure" data-surface="${s}">${rect(b,'fill="var(--concrete)" stroke="var(--steel)" stroke-width="1.4"')}${rect(b,`fill="url(#${prefix}-hatch)" opacity=".65"`)}${rect(rail,'fill="var(--steel)" stroke="var(--metal)" stroke-width=".65"')}${txt}</g>`;
+    }
+    return out;
+  }
+  function drawAnchor(A,letter){
+    const rot={wallLeft:0,ceiling:90,wallRight:180,floor:-90}[A.surface];
+    // Local +x points out of the supporting structure. The pin is exactly at A.
+    const body=`<g transform="translate(${f(A.x)} ${f(A.y)}) rotate(${rot})" class="anchor-assembly" data-anchor="${letter}"><rect x="-27" y="-28" width="8" height="56" rx="2" fill="var(--steel)" stroke="var(--metal)" stroke-width="1.2"/><path d="M-20 -17L0 -9Q12 0 0 9L-20 17Z" fill="var(--metal)" stroke="var(--steel)" stroke-width="1.5"/><path d="M-44 -19H-18M-44 19H-18" stroke="var(--metal)" stroke-width="4"/><path d="M-44 -22v6m6-6v6m-6 32v6m6-6v6" stroke="var(--hatch)" stroke-width="1"/>${bolt(-28,-19)}${bolt(-28,19)}<circle cx="0" cy="0" r="9" fill="var(--surface)" stroke="var(--fixed)" stroke-width="3"/><circle cx="0" cy="0" r="3.2" fill="var(--ink)"/></g>`;
+    const rad=rot*DEG,letterPoint={x:A.x-53*Math.cos(rad),y:A.y-53*Math.sin(rad)};
+    return body+`<g class="anchor-tag" data-anchor-tag="${letter}"><rect x="${f(letterPoint.x-14)}" y="${f(letterPoint.y-14)}" width="28" height="28" rx="7" fill="var(--surface)" stroke="var(--fixed)" stroke-width="1.3"/><text x="${f(letterPoint.x)}" y="${f(letterPoint.y)}" class="anchor-text">${letter}</text></g>`;
+  }
+  function drawMember(q,i){
+    const A=i===1?q.A1:q.A2,kind=q.kinds[i-1],colour=`var(--m${i})`,u=lerp(q.J,A,.30),v=lerp(q.J,A,.71);
+    let out=line(q.J,A,`stroke="var(--bg)" stroke-width="${kind==='bar'?14:10}" stroke-linecap="round"`);
+    if(kind==='bar'){
+      out+=line(q.J,A,`stroke="var(--steel)" stroke-width="10" stroke-linecap="round"`)+line(q.J,A,`stroke="${colour}" stroke-width="5.2" stroke-linecap="round"`);
+      const mid=lerp(q.J,A,.63),a=Math.atan2(A.y-q.J.y,A.x-q.J.x)*180/Math.PI;
+      out+=`<g transform="translate(${f(mid.x)} ${f(mid.y)}) rotate(${f(a)})"><rect x="-24" y="-6.5" width="48" height="13" rx="3" fill="var(--steel)" stroke="${colour}" stroke-width="1.6"/><path d="M-15 -4v8M-8 -4v8M8 -4v8M15 -4v8" stroke="var(--metal)" opacity=".75" stroke-width="1"/></g>`;
+    }else{
+      out+=line(q.J,A,`stroke="var(--steel)" stroke-width="6.6" stroke-linecap="round"`)+line(q.J,A,`stroke="${colour}" stroke-width="3.4" stroke-linecap="round"`)+line(q.J,A,'stroke="var(--surface)" stroke-width="1" stroke-dasharray="2 7" opacity=".75"');
+      out+=line(u,v,`stroke="${colour}" stroke-width="3" stroke-dasharray="1 7" opacity=".65"`);
+    }
+    return `<g class="member-group member-${i}" data-member="${i}" role="button" tabindex="0" aria-label="Highlight member ${i}, ${kindName(kind)}" style="color:${colour}"><title>Member ${i}: ${kindName(kind)}, joint J to fixed anchor ${i===1?'A':'B'}</title><g class="member-part">${out}</g>${line(q.J,A,'stroke="transparent" stroke-width="24"')}</g>`;
+  }
+  function drawPayload(q,b){
+    if(!b)return '';
+    const x=b.x,y=b.y;
+    let inner='';
+    if(q.payload==='motor')inner=`<rect x="${x+13}" y="${y+16}" width="88" height="32" rx="12" fill="var(--steel)" stroke="var(--metal)"/><path d="M${x+25} ${y+18}v28m9-28v28m9-28v28m34-28v28m9-28v28" stroke="var(--metal)" stroke-width="2"/><path d="M${x+99} ${y+29}h11v8h-11" fill="var(--metal)"/>`;
+    else if(q.payload==='duct')inner=`<path d="M${x+13} ${y+12}h79l12 8v32H${x+13}Z" fill="var(--steel)" stroke="var(--metal)"/><path d="M${x+20} ${y+20}h70v24H${x+20}Zm74-7v36" fill="none" stroke="var(--metal)" stroke-width="2"/>`;
+    else if(q.payload==='light')inner=`<rect x="${x+12}" y="${y+14}" width="90" height="35" rx="6" fill="var(--steel)" stroke="var(--metal)"/>`+[28,48,68,88].map(o=>`<circle cx="${x+o}" cy="${y+31}" r="6" fill="var(--m2)" opacity=".6"/>`).join('');
+    else if(q.payload==='pump')inner=`<circle cx="${x+36}" cy="${y+32}" r="22" fill="var(--steel)" stroke="var(--metal)" stroke-width="2"/><circle cx="${x+36}" cy="${y+32}" r="11" fill="none" stroke="var(--metal)"/><rect x="${x+57}" y="${y+17}" width="42" height="32" rx="6" fill="var(--steel)" stroke="var(--metal)"/><path d="M${x+76} ${y+20}v26m8-26v26" stroke="var(--metal)"/>`;
+    else inner=`<rect x="${x+12}" y="${y+12}" width="90" height="42" rx="3" fill="var(--steel)" stroke="var(--metal)"/><path d="M${x+18} ${y+18}h78M${x+18} ${y+48}h78M${x+28} ${y+18}v30m58-30v30" fill="none" stroke="var(--metal)" stroke-width="2"/>`;
+    return `<g class="payload"><title>Suspended payload; its total weight acts at J</title>${line({x:q.J.x,y:q.J.y+18},{x:q.J.x,y:b.y},'stroke="var(--metal)" stroke-width="4"')}<path d="M${q.J.x-25} ${b.y+15}L${q.J.x} ${b.y-10}L${q.J.x+25} ${b.y+15}" fill="none" stroke="var(--metal)" stroke-width="2"/>${inner}</g>`;
+  }
+  function svgText(s){
+    // Use genuine lowered SVG subscripts for mathematical symbols in the drawing.
+    return esc(s).replace(/θ₁/g,'θ<tspan baseline-shift="sub" font-size="11">1</tspan>').replace(/θ₂/g,'θ<tspan baseline-shift="sub" font-size="11">2</tspan>');
+  }
+  function renderDiagram(q,options={}){
+    const prefix=(options.prefix??'main').replace(/[^a-z0-9-]/gi,'');
+    const geom=calcGeometry(q),J=q.J;
+    const title=`${q.title}: two-member tension joint with fixed anchors A and B`;
+    const description=`Member 1 is a ${kindName(q.kinds[0])} from J to anchor A. Member 2 is a ${kindName(q.kinds[1])} from J to anchor B. Angle theta 1 is ${q.th1} degrees and theta 2 is ${q.th2} degrees, measured from the dashed datum. The applied load ${q.symbol} is ${fmt(q.P)} kilonewtons and acts ${q.direction}. Both anchors are bolted to the hatched fixed structure. Find the tension in member ${q.ask}.`;
+    let defs=`<defs><pattern id="${prefix}-grid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25" fill="none" stroke="var(--grid)" stroke-width=".6"/></pattern><pattern id="${prefix}-major" width="125" height="125" patternUnits="userSpaceOnUse"><rect width="125" height="125" fill="url(#${prefix}-grid)"/><path d="M125 0H0V125" fill="none" stroke="var(--grid)" stroke-width="1.2"/></pattern><pattern id="${prefix}-hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(40)"><line x1="0" y1="0" x2="0" y2="9" stroke="var(--hatch)" stroke-width="1.6"/></pattern>`;
+    for(const [id,col] of [['force','var(--force)'],['m1','var(--m1)'],['m2','var(--m2)']])defs+=`<marker id="${prefix}-${id}-arrow" viewBox="0 0 12 12" markerWidth="11" markerHeight="11" refX="10" refY="6" orient="auto" markerUnits="userSpaceOnUse"><path d="M1 1L11 6L1 11L4 6Z" fill="${col}"/></marker>`;
+    defs+='</defs>';
+    const header=`<text x="22" y="25" class="svg-title">${esc(q.elevation.toUpperCase())}</text><text x="978" y="25" text-anchor="end" class="svg-title">${options.forces?'TENSION FORCE OVERLAY':'INSTALLED ASSEMBLY'} · NOT TO SCALE</text>`;
+    let body=`<rect x="18" y="38" width="964" height="600" rx="12" fill="url(#${prefix}-major)"/>${header}`;
+    // A subtle wash indicates the space between the two supports; there is no
+    // line between the anchors, so it cannot be read as an extra truss member.
+    body+=`<path d="M${f(J.x)} ${f(J.y)}L${f(q.A1.x)} ${f(q.A1.y)}L${f(q.A2.x)} ${f(q.A2.y)}Z" fill="var(--m1)" opacity=".035"/>`;
+    body+=drawSupports(q,prefix);
+    body+=line(J,geom.refEnd,'stroke="var(--datum)" stroke-width="2" stroke-dasharray="8 7"');
+    for(const [i,r,end] of [[1,77,q.ref+q.th1],[2,98,q.ref-q.th2]]){
+      const a=point(J,q.ref,r),b=point(J,end,r);
+      body+=`<path d="M${f(J.x)} ${f(J.y)}L${f(a.x)} ${f(a.y)} A${r} ${r} 0 0 ${i===1?0:1} ${f(b.x)} ${f(b.y)}Z" fill="var(--m${i})" opacity=".075"/>`;
+    }
+    body+=drawMember(q,1)+drawMember(q,2)+drawAnchor(q.A1,'A')+drawAnchor(q.A2,'B')+drawPayload(q,geom.payload);
+    body+=line(point(J,q.ref+180,22),geom.forceEnd,`stroke="var(--surface)" stroke-width="7"`);
+    body+=line(point(J,q.ref+180,22),geom.forceEnd,`stroke="var(--force)" stroke-width="3.1" stroke-linecap="round" marker-end="url(#${prefix}-force-arrow)"`);
+    for(const [i,r,end] of [[1,77,q.ref+q.th1],[2,98,q.ref-q.th2]]){
+      body+=`<path d="${anglePath(J,r,q.ref,end)}" fill="none" stroke="var(--m${i})" stroke-width="2"/>`;
+      for(const a of [q.ref,end])body+=line(point(J,a,r-4),point(J,a,r+4),`stroke="var(--m${i})" stroke-width="1.6"`);
+    }
+    if(options.forces){
+      for(let i=1;i<=2;i++){
+        const a=q.ref+(i===1?q.th1:-q.th2),from=point(J,a,31),to=point(J,a,155);
+        body+=line(from,to,'stroke="var(--surface)" stroke-width="7"')+line(from,to,`stroke="var(--m${i})" stroke-width="3" marker-end="url(#${prefix}-m${i}-arrow)"`);
+      }
+    }
+    body+=`<g class="joint"><circle cx="${J.x}" cy="${J.y}" r="23" fill="var(--steel)" stroke="var(--metal)" stroke-width="1.6"/><circle cx="${J.x}" cy="${J.y}" r="16" fill="var(--surface)" stroke="var(--ink)" stroke-width="1.4"/><text x="${J.x}" y="${J.y+.5}" class="anchor-text">J</text></g>`;
+    let leaders='',boxes='';
+    for(const l of geom.labels){
+      const dx=l.target.x-l.center.x,dy=l.target.y-l.center.y,t=Math.min((l.box.w/2)/Math.max(Math.abs(dx),1e-8),(l.box.h/2)/Math.max(Math.abs(dy),1e-8));
+      const end={x:l.center.x+dx*t,y:l.center.y+dy*t};
+      leaders+=line(l.target,end,`stroke="${l.colour}" stroke-width="1.1" opacity=".72"`)+`<circle cx="${f(l.target.x)}" cy="${f(l.target.y)}" r="2.4" fill="${l.colour}"/>`;
+      let text=l.text;
+      // Force view labels identify unknown tensions without leaking their values.
+      if(options.forces&&l.id.startsWith('member'))text=text.replace(/^M([12])/,(_,i)=>`T${i==='1'?'₁':'₂'}`);
+      const labelText=svgText(text).replace(/T₁/g,'T<tspan baseline-shift="sub" font-size="11">1</tspan>').replace(/T₂/g,'T<tspan baseline-shift="sub" font-size="11">2</tspan>');
+      boxes+=`<g class="annotation" data-label="${l.id}">${rect(l.box,'rx="8" class="label-box"')}<rect x="${f(l.box.x)}" y="${f(l.box.y+7)}" width="3" height="18" rx="1.5" fill="${l.colour}"/><text x="${f(l.center.x)}" y="${f(l.center.y)}" text-anchor="middle" class="label-text" fill="${l.colour}">${labelText}</text></g>`;
+    }
+    body+=`<g aria-hidden="true">${leaders}</g>${boxes}`;
+    body+=`<text x="24" y="658" class="svg-caption">A, B: fixed anchor locations · J: pin joint</text><text x="976" y="658" text-anchor="end" class="svg-caption">Angles from the dashed datum · Load opposite the datum</text>`;
+    return `<svg class="drawing-svg" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="${prefix}-title ${prefix}-desc" data-family="${q.family}" data-focus="${options.focus??0}"><title id="${prefix}-title">${esc(title)}</title><desc id="${prefix}-desc">${esc(description)}</desc>${defs}${body}</svg>`;
+  }
+  function equilibriumMath(q){
+    const perp=`${textT(1)}${sin(theta(1))}${mo('=')}${textT(2)}${sin(theta(2))}`;
+    const parallel=`${textT(1)}${cos(theta(1))}${mo('+')}${textT(2)}${cos(theta(2))}${mo('=')}<mi>${q.symbol}</mi>`;
+    return {perp,parallel};
+  }
+  function workingHTML(q){
+    const eq=equilibriumMath(q),i=q.ask,j=i===1?2:1,otherAngle=i===1?q.th2:q.th1;
+    const general=`${textT(i)}${mo('=')}<mfrac><mrow><mi>${q.symbol}</mi>${sin(theta(j))}</mrow><mrow>${sin(`${theta(1)}${mo('+')}${theta(2)}`)}</mrow></mfrac>`;
+    const sub=`${textT(i)}${mo('=')}<mfrac><mrow>${mn(q.P)}${mo('×')}${sin(angle(otherAngle))}</mrow><mrow>${sin(`${angle(q.th1)}${mo('+')}${angle(q.th2)}`)}</mrow></mfrac>`;
+    return `<div class="step"><div class="step-heading"><span class="step-number">1</span>Choose the datum axes</div><p>Resolve perpendicular to the datum.</p>${math(eq.perp,true)}<p>Resolve along the datum.</p>${math(eq.parallel,true)}</div><div class="step"><div class="step-heading"><span class="step-number">2</span>Eliminate the other tension</div><p>Substitute one equilibrium equation into the other, then use the sine addition identity.</p>${math(general,true)}</div><div class="step"><div class="step-heading"><span class="step-number">3</span>Substitute in degree mode</div>${math(sub,true)}<div class="result-box">${math(`${textT(i)}${mo('=')}${mn(q.answer)}<mspace width=".3em"/><mtext>kN</mtext>`)}</div><p style="margin-top:10px">The other member has tension ${fmt(i===1?q.T2:q.T1)} kN.</p><p>Both tensions are positive, as expected for this load case.</p></div>`;
+  }
+  function supportName(surface){return {ceiling:'the overhead slab',floor:'the floor slab',wallLeft:'the left-hand wall',wallRight:'the right-hand wall'}[surface]}
+  return {DEG,MARK_TOL,STEP_SCALE,MARK_TOL_100,W,H,S,int,pick,shuffle,clamp,fmt,n2,cents,esc,point,dist,lerp,textT,theta,mn,mo,math,angle,sin,cos,kindName,memberName,parseHundredths,withinTolerance,mark,solve2x2,solveTwoMember,anchorOn,families,scenarios,newHistory,nextFamily,createQuestion,buildSet,fingerprint,validateQuestion,calcGeometry,renderDiagram,equilibriumMath,workingHTML,supportName,intersects,segmentRect};
+})();
+
+const APP = (() => {
+  const E=ENGINE, $=id=>document.getElementById(id);
+  const state={active:false,phase:'setup',history:E.newHistory(),queue:[],position:0,q:null,locked:false,checked:0,correct:0,records:[],name:'Student',mode:'timed',batch:10,target:10,limit:1200,started:0,ended:0,deadline:null,timer:null,forces:false,focus:0,diagramFit:false,zoom:1};
+  let toastTimer=null;
+  function toast(text){$('toast').textContent=text;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,5000)}
+  function showError(error){console.error(error);toast(error instanceof Error?error.message:String(error))}
+  function safe(fn){return (...args)=>{try{return fn(...args)}catch(error){showError(error)}}}
+  function mmss(seconds){seconds=Math.max(0,Math.floor(seconds));return `${Math.floor(seconds/60)}:${String(seconds%60).padStart(2,'0')}`}
+  function setTheme(theme){
+    document.documentElement.dataset.theme=theme;
+    const label=theme==='dark'?'Light mode':'Dark mode';
+    $('themeLabel').textContent=label;$('themeBtn').setAttribute('aria-label',`Switch to ${label.toLowerCase()}`);
+    $('themeBtn').querySelector('use').setAttribute('href',theme==='dark'?'#i-sun':'#i-moon');
+    document.querySelector('meta[name="theme-color"]').setAttribute('content',theme==='dark'?'#0a101b':'#eef3f7');
+    try{localStorage.setItem('statics-studio.v2.theme',theme)}catch(e){}
+  }
+  $('themeBtn').addEventListener('click',()=>setTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'));
+  setTheme(document.documentElement.dataset.theme);
+  $('fsBtn').addEventListener('click',async()=>{
+    try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else toast('Full screen is not supported in this browser. Use the Enlarge drawing control instead.')}catch(e){toast('The browser did not allow full screen. The Enlarge drawing control is still available.')}
+  });
+  document.addEventListener('fullscreenchange',()=>{const yes=!!document.fullscreenElement;$('fsLabel').textContent=yes?'Exit full screen':'Full screen';$('fsBtn').setAttribute('aria-label',yes?'Exit full screen':'Enter full screen')});
+  document.querySelectorAll('[data-close]').forEach(b=>b.addEventListener('click',()=>$(b.dataset.close).close()));
+  document.querySelectorAll('.model-link').forEach(b=>b.addEventListener('click',()=>$('modelDialog').showModal()));
+  $('helpBtn').addEventListener('click',()=>$('modelDialog').showModal());
+  function updateModeFields(){const mode=document.querySelector('input[name=mode]:checked').value;$('timedField').hidden=mode!=='timed';$('targetField').hidden=mode!=='target'}
+  document.querySelectorAll('input[name=mode]').forEach(r=>r.addEventListener('change',updateModeFields));
+  updateModeFields();
+  function closeTransient(){for(const id of ['zoomDialog','newDialog'])if($(id).open)$(id).close();closeCalculator(false)}
+  function updateTop(){
+    $('whoName').textContent=state.name;$('whoName').title=state.name;
+    $('modeTxt').textContent=state.mode==='target'?'Correct-answer target':state.limit?'Timed practice':'Unlimited practice';
+    $('targetTxt').textContent=state.mode==='target'?`${state.correct} of ${state.target}`:`Question ${state.checked+(state.locked?0:1)}`;
+    $('scoreTopVal').textContent=`${state.correct} / ${state.checked}`;
+    $('timerLabel').textContent=state.deadline?'Time remaining':'Time elapsed';
+    tick();
+  }
+  function tick(){
+    if(!state.active)return;
+    const now=Date.now(),remaining=state.deadline?Math.max(0,Math.ceil((state.deadline-now)/1000)):null;
+    $('timeTxt').textContent=remaining===null?mmss((now-state.started)/1000):mmss(remaining);
+    $('timeTxt').classList.toggle('timer-warning',remaining!==null&&remaining<=60);
+    if(state.deadline&&now>=state.deadline)finish('Time is up.');
+  }
+  document.addEventListener('visibilitychange',tick);
+  function startSession(event){
+    if(event)event.preventDefault();
+    const mode=document.querySelector('input[name=mode]:checked').value;
+    const target=Number($('targetInput').value),batch=Number($('qtyInput').value);
+    $('setupError').hidden=true;
+    if(mode==='target'&&(!Number.isInteger(target)||target<1||target>1000)){$('setupError').textContent='Choose a whole-number target from 1 to 1000.';$('setupError').hidden=false;$('targetInput').focus();return}
+    if(![8,10,12,15].includes(batch))throw Error('Choose a valid batch size.');
+    const limit=mode==='timed'?Number(document.querySelector('input[name=tlimit]:checked').value):0;
+    if(![0,600,1200,1800].includes(limit))throw Error('Choose a valid time limit.');
+    const history=E.newHistory(),queue=E.buildSet(batch,history);
+    clearInterval(state.timer);
+    state.name=$('nameInput').value.trim()||'Student';state.mode=mode;state.batch=batch;state.target=target;state.limit=limit;
+    state.history=history;state.queue=queue;state.position=0;state.checked=0;state.correct=0;state.records=[];state.locked=false;state.forces=false;state.focus=0;state.started=Date.now();state.ended=0;state.deadline=limit?state.started+limit*1000:null;
+    state.phase='question';state.active=true;
+    closeTransient();$('startScreen').hidden=true;$('endScreen').hidden=true;$('sessionScreen').hidden=false;
+    renderQuestion();updateTop();state.timer=setInterval(tick,400);
+    window.scrollTo({top:0,behavior:'instant'});
+  }
+  $('setupForm').addEventListener('submit',safe(startSession));
+  function openSetup(){
+    $('setupModalHome').appendChild($('setupCard'));
+    $('newWarning').hidden=false;
+    $('newWarning').textContent=state.active?'Starting a new session resets the current score. A running timer continues until you start again.':'Choose settings for a fresh session. The previous summary stays available until you start.';
+    $('cancelSetupBtn').hidden=false;$('cancelSetupBtn').textContent=state.active?'Keep current session':'Back to summary';
+    $('setupError').hidden=true;$('newDialog').showModal();
+  }
+  $('newBtn').addEventListener('click',openSetup);$('restartBtn').addEventListener('click',openSetup);
+  $('cancelSetupBtn').addEventListener('click',()=>$('newDialog').close());
+  $('newDialog').addEventListener('close',()=>{$('setupHome').appendChild($('setupCard'));$('newWarning').hidden=true;$('cancelSetupBtn').hidden=true});
+  function renderQuestion(){
+    if(!state.active)return;
+    state.q=state.queue[state.position];state.locked=false;state.forces=false;state.focus=0;state.diagramFit=window.innerWidth<=720;
+    const q=state.q,number=state.checked+1;
+    $('drawingId').textContent=`ENGINEERING BRIEF / ${String(number).padStart(2,'0')}`;$('progress').textContent=`Question ${number}`;
+    $('qTitle').textContent=q.title;$('context').textContent=q.context;
+    $('statement').textContent=`${q.action} The joint is in static equilibrium.`;
+    $('dataStrip').innerHTML=`<div class="datum-cell"><span class="small-label">${q.symbol==='W'?'Applied weight':'Applied force'}</span><span class="value">${E.math(`<mi>${q.symbol}</mi><mo>=</mo>${E.mn(q.P)}<mspace width=".25em"/><mtext>kN</mtext>`)}</span></div><div class="datum-cell"><span class="small-label">M1 to datum</span><span class="value">${E.math(`${E.theta(1)}<mo>=</mo>${E.angle(q.th1)}`)}</span></div><div class="datum-cell"><span class="small-label">M2 to datum</span><span class="value">${E.math(`${E.theta(2)}<mo>=</mo>${E.angle(q.th2)}`)}</span></div>`;
+    $('taskTitle').innerHTML=`Find the tension in <span style="color:var(--m${q.ask})">Member ${q.ask}</span>.`;
+    $('answerLabel').innerHTML=`${E.math(E.textT(q.ask))} · ${E.kindName(q.kinds[q.ask-1])} from J to ${q.ask===1?'A':'B'}`;
+    $('fixingText').innerHTML=`<strong>Anchor A</strong> is bolted to ${E.supportName(q.surfaces[0])}.<br><strong>Anchor B</strong> is bolted to ${E.supportName(q.surfaces[1])}.`;
+    $('legend1').textContent=`M1 · ${E.kindName(q.kinds[0])}`;$('legend2').textContent=`M2 · ${E.kindName(q.kinds[1])}`;
+    const eq=E.equilibriumMath(q);$('hintPerp').innerHTML=E.math(eq.perp,true);$('hintParallel').innerHTML=E.math(eq.parallel,true);
+    $('ansVal').value='';$('ansVal').disabled=false;$('ansVal').removeAttribute('aria-invalid');$('fbAns').hidden=true;$('fbAns').textContent='';$('fbAns').className='feedback';
+    $('checkBtn').disabled=false;$('nextBtn').disabled=true;$('nextBtn').textContent='Next question →';$('workingDetails').hidden=true;$('workingDetails').open=false;$('workedSolution').innerHTML='';$('hintDetails').open=false;
+    renderDrawing();updateTop();
+  }
+  function renderDrawing(){
+    const scroll=$('drawingScroll'),oldScroll=scroll.scrollLeft;
+    $('drawing').innerHTML=E.renderDiagram(state.q,{prefix:'main',forces:state.forces,focus:state.focus});
+    $('assemblyBtn').setAttribute('aria-pressed',String(!state.forces));$('forcesBtn').setAttribute('aria-pressed',String(state.forces));
+    document.querySelectorAll('.legend-member').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.focus)===state.focus)));
+    scroll.classList.toggle('fit-view',state.diagramFit);
+    $('fitDrawingBtn').textContent=state.diagramFit?'Detail':'Fit';
+    $('fitDrawingBtn').setAttribute('aria-label',state.diagramFit?'Show larger diagram with horizontal scrolling':'Fit the whole diagram to the screen');
+    $('smallScreenNote').textContent=state.diagramFit?'Whole assembly shown. Select Enlarge or Detail to inspect labels.':'Scroll sideways to inspect the drawing, or select Enlarge.';
+    wireDiagram($('drawing'));
+    requestAnimationFrame(()=>{scroll.scrollLeft=oldScroll||Math.max(0,(scroll.scrollWidth-scroll.clientWidth)/2)});
+    if($('zoomDialog').open)renderZoom(false);
+  }
+  function focusMember(i){state.focus=state.focus===i?0:i;document.querySelectorAll('#drawing .drawing-svg,#zoomDrawing .drawing-svg').forEach(s=>s.dataset.focus=state.focus);document.querySelectorAll('.legend-member').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.focus)===state.focus)))}
+  function wireDiagram(container){
+    container.querySelectorAll('[data-member]').forEach(g=>{g.addEventListener('click',()=>focusMember(Number(g.dataset.member)));g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();e.stopPropagation();focusMember(Number(g.dataset.member))}})});
+  }
+  document.querySelectorAll('.legend-member').forEach(b=>b.addEventListener('click',()=>focusMember(Number(b.dataset.focus))));
+  $('fitDrawingBtn').addEventListener('click',safe(()=>{state.diagramFit=!state.diagramFit;renderDrawing()}));
+  const smallDiagramMedia=window.matchMedia('(max-width: 720px)');
+  smallDiagramMedia.addEventListener('change',e=>{if(state.active){state.diagramFit=e.matches;renderDrawing()}});
+  $('assemblyBtn').addEventListener('click',safe(()=>{state.forces=false;renderDrawing()}));$('forcesBtn').addEventListener('click',safe(()=>{state.forces=true;renderDrawing()}));
+  function checkCurrent(event){
+    if(event)event.preventDefault();
+    if(!state.active||!state.q||state.locked||$('newDialog').open)return;
+    if(state.deadline&&Date.now()>=state.deadline){finish('Time is up.');return}
+    const raw=$('ansVal').value.trim(),result=E.mark(raw,state.q.answer);
+    if(!result.ok){$('fbAns').className='feedback no';$('fbAns').textContent=result.message;$('fbAns').hidden=false;$('ansVal').setAttribute('aria-invalid','true');$('ansVal').focus();return}
+    state.locked=true;state.checked++;if(result.correct)state.correct++;
+    state.records.push({number:state.checked,title:state.q.title,member:state.q.ask,input:result.value,expected:result.expected,correct:result.correct});
+    $('ansVal').removeAttribute('aria-invalid');$('ansVal').disabled=true;$('checkBtn').disabled=true;$('nextBtn').disabled=false;
+    const lo=E.fmt(result.expected-E.MARK_TOL),hi=E.fmt(result.expected+E.MARK_TOL);
+    $('fbAns').className=`feedback ${result.correct?'ok':'no'}`;
+    $('fbAns').innerHTML=`<strong>${result.correct?'✓ Accepted':'Not within the accepted range'}</strong>Calculated tension: <strong style="display:inline;font-size:inherit">${E.fmt(result.expected)} kN</strong>.<span class="range">Accepted: ${lo} to ${hi} kN, inclusive.</span>`;
+    $('fbAns').hidden=false;$('workingDetails').hidden=false;$('workedSolution').innerHTML=E.workingHTML(state.q);
+    updateTop();
+    if(state.mode==='target'&&state.correct>=state.target){finish('Target achieved.');return}
+  }
+  $('answerForm').addEventListener('submit',safe(checkCurrent));
+  function nextQuestion(){
+    if(!state.active||!state.locked)return;
+    if(state.deadline&&Date.now()>=state.deadline){finish('Time is up.');return}
+    const nextPosition=state.position+1;
+    if(nextPosition>=state.queue.length){const next=E.buildSet(state.batch,state.history);state.queue=next;state.position=0}else state.position=nextPosition;
+    renderQuestion();
+    if(window.innerWidth>950)$('ansVal').focus({preventScroll:true});
+    else $('qTitle').scrollIntoView({block:'start',behavior:'smooth'});
+  }
+  $('nextBtn').addEventListener('click',safe(nextQuestion));
+  // Keyboard submission is scoped to the answer form. Enter in setup, notes or
+  // the calculator never submits or advances a question.
+  document.addEventListener('keydown',safe(e=>{
+    if(e.key!=='Enter'||e.repeat||!state.active||!state.locked)return;
+    if(document.querySelector('dialog[open]')||!$('calculator').hidden)return;
+    if(e.target===document.body||e.target===$('ansVal')){e.preventDefault();nextQuestion()}
+  }));
+  function finish(message='Session finished.'){
+    if(!state.active)return;
+    clearInterval(state.timer);state.timer=null;state.active=false;state.phase='summary';state.ended=Date.now();
+    closeTransient();$('sessionScreen').hidden=true;$('startScreen').hidden=true;$('endScreen').hidden=false;
+    $('endTitle').textContent=message.startsWith('Target')?'Target achieved':message.startsWith('Time')?'Time is up':'Session complete';
+    $('endMsg').textContent=state.checked?`You checked ${state.checked} engineering ${state.checked===1?'brief':'briefs'} and answered ${state.correct} within the accepted range.`:'No answers were checked in this session.';
+    $('sumScore').textContent=`${state.correct} / ${state.checked}`;$('sumAccuracy').textContent=state.checked?`${Math.round(state.correct/state.checked*100)}%`:'—';
+    const elapsed=Math.max(0,(Math.min(state.ended,state.deadline??Infinity)-state.started)/1000);$('sumTime').textContent=mmss(elapsed);
+    $('summaryInfo').textContent=`${state.name} · ${state.mode==='target'?`Target: ${state.target} correct answers`:state.limit?`${state.limit/60}-minute timed practice`:'Unlimited practice'} · ±1.00 kN marking tolerance.`;
+    $('reviewBody').innerHTML=state.records.length?state.records.map(r=>`<tr><td>${r.number}. ${E.esc(r.title)}</td><td>M${r.member}</td><td class="mono">${E.fmt(r.input)} kN</td><td class="mono">${E.fmt(r.expected)} kN</td><td class="${r.correct?'correct':'incorrect'}">${r.correct?'Accepted':'Outside range'}</td></tr>`).join(''):'<tr><td colspan="5">No answers submitted.</td></tr>';
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  $('finishBtn').addEventListener('click',()=>finish());
+  function renderZoom(reset=false){
+    if(reset)state.zoom=1;
+    const viewport=$('zoomViewport');const oldX=viewport.scrollLeft,oldY=viewport.scrollTop;
+    $('zoomDrawing').innerHTML=E.renderDiagram(state.q,{prefix:'zoom',forces:state.forces,focus:state.focus});wireDiagram($('zoomDrawing'));
+    sizeZoom();if(!reset){viewport.scrollLeft=oldX;viewport.scrollTop=oldY}
+  }
+  function sizeZoom(){
+    const v=$('zoomViewport'),base=Math.min(v.clientWidth,Math.max(180,v.clientHeight)*E.W/E.H);
+    $('zoomDrawing').style.width=`${Math.max(100,base*state.zoom)}px`;$('zoomDrawing').style.margin='0 auto';
+    $('zoomPercent').textContent=`${Math.round(state.zoom*100)}%`;$('zoomOut').disabled=state.zoom<=.75;$('zoomIn').disabled=state.zoom>=3;
+  }
+  $('enlargeBtn').addEventListener('click',safe(()=>{$('zoomTitle').textContent=state.q.title;$('zoomDialog').showModal();renderZoom(true)}));
+  function changeZoom(delta){const v=$('zoomViewport'),old=state.zoom,centreX=(v.scrollLeft+v.clientWidth/2)/Math.max(1,$('zoomDrawing').clientWidth),centreY=(v.scrollTop+v.clientHeight/2)/Math.max(1,$('zoomDrawing').clientHeight);state.zoom=E.clamp(Math.round((state.zoom+delta)*100)/100,.75,3);sizeZoom();if(old!==state.zoom){v.scrollLeft=centreX*$('zoomDrawing').clientWidth-v.clientWidth/2;v.scrollTop=centreY*$('zoomDrawing').clientHeight-v.clientHeight/2}}
+  $('zoomIn').addEventListener('click',()=>changeZoom(.25));$('zoomOut').addEventListener('click',()=>changeZoom(-.25));$('zoomFit').addEventListener('click',()=>{state.zoom=1;sizeZoom();$('zoomViewport').scrollTo(0,0)});
+  window.addEventListener('resize',()=>{if($('zoomDialog').open)sizeZoom();clampCalculator()});
+  let pan=null;
+  $('zoomViewport').addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'||e.button!==0||e.target.closest('[data-member]'))return;pan={x:e.clientX,y:e.clientY,left:$('zoomViewport').scrollLeft,top:$('zoomViewport').scrollTop};$('zoomViewport').setPointerCapture(e.pointerId);$('zoomViewport').classList.add('dragging')});
+  $('zoomViewport').addEventListener('pointermove',e=>{if(!pan)return;$('zoomViewport').scrollLeft=pan.left-(e.clientX-pan.x);$('zoomViewport').scrollTop=pan.top-(e.clientY-pan.y)});
+  for(const type of ['pointerup','pointercancel'])$('zoomViewport').addEventListener(type,()=>{pan=null;$('zoomViewport').classList.remove('dragging')});
+
+  // Offline scientific calculator: recursive-descent expression parser, no eval.
+  const calcState={ans:0,drag:null};
+  function calculate(raw,lastAnswer=0){
+    let source=String(raw).replace(/×/g,'*').replace(/÷/g,'/').replace(/[−–]/g,'-').replace(/π/g,'pi').replace(/√/g,'sqrt').replace(/\s/g,'').toLowerCase();
+    if(!source)throw Error('Enter a calculation.');if(source.length>240)throw Error('This expression is too long.');
+    const tokens=[];let pos=0;
+    while(pos<source.length){
+      const rest=source.slice(pos),num=/^(?:\d+(?:\.\d*)?|\.\d+)(?:e[+-]?\d+)?/.exec(rest),word=/^[a-z]+/.exec(rest);
+      if(num){tokens.push({type:'number',value:Number(num[0])});pos+=num[0].length}
+      else if(word){tokens.push({type:'word',value:word[0]});pos+=word[0].length}
+      else if('+-*/^()'.includes(source[pos]))tokens.push({type:source[pos++]});
+      else throw Error('Use numbers, brackets and the calculator functions.');
+    }
+    let at=0;const current=()=>tokens[at]?.type,consume=t=>current()===t?(at++,true):false;
+    const functions={sin:n=>Math.sin(n*E.DEG),cos:n=>Math.cos(n*E.DEG),tan:n=>{if(Math.abs(Math.cos(n*E.DEG))<1e-12)throw Error('Tan is undefined at this angle.');return Math.tan(n*E.DEG)},asin:n=>{if(Math.abs(n)>1)throw Error('Inverse sine needs a value from −1 to 1.');return Math.asin(n)/E.DEG},acos:n=>{if(Math.abs(n)>1)throw Error('Inverse cosine needs a value from −1 to 1.');return Math.acos(n)/E.DEG},atan:n=>Math.atan(n)/E.DEG,sqrt:n=>{if(n<0)throw Error('Use a non-negative square root.');return Math.sqrt(n)}};
+    function primary(){
+      if(consume('(')){const v=sum();if(!consume(')'))throw Error('Close the bracket.');return v}
+      const tok=tokens[at++];if(!tok)throw Error('Complete the expression.');
+      if(tok.type==='number')return tok.value;
+      if(tok.type==='word'){
+        if(tok.value==='pi')return Math.PI;if(tok.value==='ans')return lastAnswer;
+        const fn=functions[tok.value];if(!fn)throw Error('Unknown calculator function.');
+        if(!consume('('))throw Error('Use brackets after a function.');const v=sum();if(!consume(')'))throw Error('Close the function bracket.');return fn(v);
+      }
+      throw Error('Check the numbers and operators.');
+    }
+    function power(){let v=primary();if(consume('^'))v=Math.pow(v,unary());return v}
+    function unary(){if(consume('+'))return unary();if(consume('-'))return -unary();return power()}
+    function product(){let v=unary();for(;;){if(consume('*'))v*=unary();else if(consume('/')){const d=unary();if(d===0)throw Error('Cannot divide by zero.');v/=d}else return v}}
+    function sum(){let v=product();for(;;){if(consume('+'))v+=product();else if(consume('-'))v-=product();else return v}}
+    const result=sum();if(at!==tokens.length)throw Error('Check the expression. Use × between terms.');if(!Number.isFinite(result))throw Error('This calculation has no finite real answer.');return Math.abs(result)<1e-12?0:result;
+  }
+  const inverse=fn=>E.math(`<msup><mi mathvariant="normal">${fn}</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup>`);
+  const calcKeys=[
+    ['sin','sin(','function-key'],['cos','cos(','function-key'],['tan','tan(','function-key'],[E.math('<msqrt><mi>x</mi></msqrt>'),'sqrt(','function-key'],
+    [inverse('sin'),'asin(','function-key'],[inverse('cos'),'acos(','function-key'],[inverse('tan'),'atan(','function-key'],[E.math('<msup><mi>x</mi><mi>y</mi></msup>'),'^','function-key'],
+    ['(','(',''],[')',')',''],['π','pi','function-key'],['AC','clear','function-key'],
+    ['7','7',''],['8','8',''],['9','9',''],['÷','÷','function-key'],
+    ['4','4',''],['5','5',''],['6','6',''],['×','×','function-key'],
+    ['1','1',''],['2','2',''],['3','3',''],['−','−','function-key'],
+    ['0','0',''],['.','.',''],['⌫','back','function-key'],['+','+','function-key'],
+    ['Ans','ans','function-key'],['±','sign','function-key'],[E.math('<msup><mi>x</mi><mn>2</mn></msup>'),'^2','function-key'],['=','equals','equals']
+  ];
+  const keyNames={'asin(':'Inverse sine','acos(':'Inverse cosine','atan(':'Inverse tangent','sqrt(':'Square root','^':'Power','clear':'Clear expression','back':'Backspace','sign':'Change expression sign','equals':'Calculate','ans':'Previous answer','^2':'Square'};
+  $('calcKeys').innerHTML=calcKeys.map(([label,insert,cls])=>`<button type="button" class="${cls}" data-insert="${E.esc(insert)}" aria-label="${E.esc(keyNames[insert]||label.replace(/<[^>]*>/g,''))}">${label}</button>`).join('');
+  function calcInsert(value){
+    const field=$('calcInput');
+    if(value==='equals'){try{const result=calculate(field.value,calcState.ans);calcState.ans=result;$('calcOutput').textContent=`= ${Number(result.toPrecision(12))}`;$('calcOutput').style.color='var(--m1)'}catch(e){$('calcOutput').textContent=e.message;$('calcOutput').style.color='var(--bad)'}return}
+    if(value==='clear'){field.value='';$('calcOutput').textContent='Angles in degrees';$('calcOutput').style.color='var(--m1)';field.focus();return}
+    if(value==='sign'){field.value=field.value.startsWith('−(')&&field.value.endsWith(')')?field.value.slice(2,-1):`−(${field.value||'0'})`;field.focus();field.setSelectionRange(field.value.length,field.value.length);return}
+    const start=field.selectionStart??field.value.length,end=field.selectionEnd??field.value.length;
+    if(value==='back'){const lo=start===end?Math.max(0,start-1):start;field.value=field.value.slice(0,lo)+field.value.slice(end);field.focus();field.setSelectionRange(lo,lo);return}
+    if(field.value.length+value.length>240){$('calcOutput').textContent='This expression is too long.';return}
+    field.value=field.value.slice(0,start)+value+field.value.slice(end);field.focus();field.setSelectionRange(start+value.length,start+value.length);
+  }
+  $('calcKeys').addEventListener('click',e=>{const b=e.target.closest('button[data-insert]');if(b)calcInsert(b.dataset.insert)});
+  $('calcInput').addEventListener('keydown',e=>{e.stopPropagation();if(e.key==='Enter'||e.key==='='){e.preventDefault();calcInsert('equals')}else if(e.key==='Escape'){e.preventDefault();closeCalculator()}});
+  function openCalculator(){const yes=$('calculator').hidden;$('calculator').hidden=!yes;$('calcBtn').setAttribute('aria-expanded',String(yes));if(yes){clampCalculator();$('calcInput').focus()}}
+  function closeCalculator(focus=true){const wasOpen=!$('calculator').hidden;$('calculator').hidden=true;$('calcBtn').setAttribute('aria-expanded','false');if(wasOpen&&focus&&state.active)$('calcBtn').focus()}
+  $('calcBtn').addEventListener('click',openCalculator);$('closeCalc').addEventListener('click',()=>closeCalculator());
+  function clampCalculator(){const c=$('calculator');if(c.hidden)return;const r=c.getBoundingClientRect();if(c.style.left){c.style.left=`${E.clamp(r.left,8,Math.max(8,innerWidth-r.width-8))}px`;c.style.top=`${E.clamp(r.top,8,Math.max(8,innerHeight-r.height-8))}px`}}
+  $('calcDrag').addEventListener('pointerdown',e=>{if(e.target.closest('button')||e.button!==0)return;const r=$('calculator').getBoundingClientRect();calcState.drag={dx:e.clientX-r.left,dy:e.clientY-r.top};$('calcDrag').setPointerCapture(e.pointerId);e.preventDefault()});
+  $('calcDrag').addEventListener('pointermove',e=>{if(!calcState.drag)return;const c=$('calculator');c.style.left=`${E.clamp(e.clientX-calcState.drag.dx,8,Math.max(8,innerWidth-c.offsetWidth-8))}px`;c.style.top=`${E.clamp(e.clientY-calcState.drag.dy,8,Math.max(8,innerHeight-c.offsetHeight-8))}px`;c.style.right='auto';c.style.bottom='auto'});
+  for(const type of ['pointerup','pointercancel'])$('calcDrag').addEventListener(type,()=>calcState.drag=null);
+  const preview=E.createQuestion('ceiling',E.newHistory(),{scenarioIndex:0,ask:1,ref:90,J:{x:500,y:398},P:24,th1:34,th2:46});
+  $('previewDrawing').innerHTML=E.renderDiagram(preview,{prefix:'preview'});
+  // The preview is an illustration, not a second interactive question.
+  $('previewDrawing').querySelectorAll('[data-member]').forEach(g=>{g.removeAttribute('role');g.removeAttribute('tabindex')});
+  return {state,startSession,renderQuestion,renderDrawing,checkCurrent,nextQuestion,finish,tick,calculate,setTheme};
+})();
+</script>
+</body></html>
